@@ -16,7 +16,7 @@ public:
     Robot(std::vector<float> &l,
           std::string ser="/dev/ttyUSB0",
           int baud=9600,
-          int speed=100);
+          int speed=750);
 
     ~Robot();
 
@@ -27,6 +27,8 @@ public:
     void set_des_q_deg(const std::vector<float> & q);
 
     void set_des_gripper(GripperState state);
+
+    void homing();
 
     std::vector<float> get_q();
     GripperState get_gripper();

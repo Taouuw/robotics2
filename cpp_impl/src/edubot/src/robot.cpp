@@ -1,4 +1,5 @@
 #include "robot.hpp"
+#include <iostream>
 
 #include <cmath>
 #include <cassert>
@@ -28,7 +29,7 @@ Robot::Robot(std::vector<float> &l,
     this->serial->set_option(boost::asio::serial_port_base::parity(boost::asio::serial_port_base::parity::none));
     this->serial->set_option(boost::asio::serial_port_base::stop_bits(boost::asio::serial_port_base::stop_bits::one));
 
-    this->set_des_q_rad(this->HOME);
+    this->homing();
     this->set_des_gripper(GripperState::Open);
 
 }
@@ -96,6 +97,22 @@ void Robot::set_des_q_deg(const std::vector<float> & q)
     cmd += "\r";
 
     this->write_cmd(cmd);
+
+    std::cout<< cmd << std::endl;
+}
+
+void Robot::homing()
+{
+    std::string cmd = "";
+    for(uint i = 0; i < this->L.size(); i++)
+    {
+        cmd += this->format_cmd(i,
+            this->RAD_2_TICKS(i, this->HOME.at(i)) + this->MIN[i],
+            0);
+    }
+    cmd += "\r";
+
+    this->write_cmd(cmd);
 }
 
 /* Set the currently desired gripper state
@@ -140,7 +157,8 @@ float Robot::RAD_2_TICKS(int servo, float rad)
 std::string Robot::format_cmd(int servo, int pos, int vel)
 {
     char buffer[13];
-    sprintf(buffer, "#%dP%04dV%03d", servo, pos, vel);
+    if (vel == 0) sprintf(buffer, "#%dP%04d", servo, pos);
+    else sprintf(buffer, "#%dP%04dS%03d", servo, pos, vel);
     return std::string(buffer);
 }
 

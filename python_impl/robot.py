@@ -31,7 +31,7 @@ class Robot(object):
         self.range = np.array([np.pi] * len(l))
 
         # Initialize
-        self.set_des_q_rad(self.HOME)
+        self.homing()
         self.set_gripper(GripperState.Open)
         self.q = self.HOME
         self.gripper = GripperState.Open
@@ -47,13 +47,23 @@ class Robot(object):
         """
         return (self.max[servo] - self.min[servo]) / self.range[servo] * rad
 
+    def homing(self):
+        """ Send the command to put the arm into the home position"""
+        cmd = ""
+        for i in range(len(self.HOME)):
+            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, self.HOME[i]) + self.min[i]):04d}"
+        cmd += "\r"
+
+        self.ser.write(bytes(cmd, 'ascii'))
+        self.q = self.HOME
+
     def set_des_q_single_rad(self, servo: int, q: float):
         """ Set a single servo reference position
             @param servo: The servo index
             @param     q: The position in radians
         """
         assert(servo >= 0 and servo <= len(self.l))
-        cmd = f"#{servo}P{int(self.RAD_2_TICKS(servo, * q) + self.min[servo]):04d}S{self.SPEED:03d}\r"
+        cmd = f"#{servo} P{int(self.RAD_2_TICKS(servo, q) + self.min[servo]):04d} S{self.SPEED:03d}\r"
         self.ser.write(bytes(cmd, 'ascii'))
         self.q[servo] = q
 
@@ -71,9 +81,8 @@ class Robot(object):
         assert(len(q) == len(self.l))
         cmd = ""
         for i in range(len(q)):
-            cmd += f"#{i}P{int(self.RAD_2_TICKS(i, q[i]) + self.min[i]):04d}S{self.SPEED:03d}"
+            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, q[i]) + self.min[i]):04d} S{self.SPEED:03d} "
         cmd += "\r"
-        print(cmd)
         self.ser.write(bytes(cmd,'ascii'))
         self.q = q
 
