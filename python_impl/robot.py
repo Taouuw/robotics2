@@ -45,13 +45,13 @@ class Robot(object):
             
             @returns number of ticks equivalent to the rad angle
         """
-        return (self.max[servo] - self.min[servo]) / self.range[servo] * rad
+        return (self.max[servo] - self.min[servo]) / self.range[servo] * rad + self.min[servo]
 
     def homing(self):
         """ Send the command to put the arm into the home position"""
         cmd = ""
         for i in range(len(self.HOME)):
-            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, self.HOME[i]) + self.min[i]):04d}"
+            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, self.HOME[i])):04d}"
         cmd += "\r"
 
         self.ser.write(bytes(cmd, 'ascii'))
@@ -63,7 +63,7 @@ class Robot(object):
             @param     q: The position in radians
         """
         assert(servo >= 0 and servo <= len(self.l))
-        cmd = f"#{servo} P{int(self.RAD_2_TICKS(servo, q) + self.min[servo]):04d} S{self.SPEED:03d}\r"
+        cmd = f"#{servo} P{int(self.RAD_2_TICKS(servo, q)):04d} S{self.SPEED:03d}\r"
         self.ser.write(bytes(cmd, 'ascii'))
         self.q[servo] = q
 
@@ -81,7 +81,7 @@ class Robot(object):
         assert(len(q) == len(self.l))
         cmd = ""
         for i in range(len(q)):
-            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, q[i]) + self.min[i]):04d} S{self.SPEED:03d} "
+            cmd += f"#{i} P{int(self.RAD_2_TICKS(i, q[i])):04d} S{self.SPEED:03d} "
         cmd += "\r"
         self.ser.write(bytes(cmd,'ascii'))
         self.q = q

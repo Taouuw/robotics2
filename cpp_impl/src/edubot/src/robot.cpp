@@ -47,7 +47,9 @@ Robot::~Robot()
 void Robot::set_des_q_single_rad(int servo, float q)
 {
     assert(servo >= 0 && servo <= (int)this->L.size());
-    std::string cmd = this->format_cmd(servo, this->RAD_2_TICKS(servo, q) + this->MIN[servo], this->SPEED);
+    std::string cmd = this->format_cmd(servo,
+                                       this->RAD_2_TICKS(servo, q),
+                                       this->SPEED);
     cmd += "\r";
 
     this->write_cmd(cmd);
@@ -71,7 +73,7 @@ void Robot::set_des_q_rad(const std::vector<float> & q)
     for(uint i = 0; i < this->L.size(); i++)
     {
         cmd += this->format_cmd(i,
-          this->RAD_2_TICKS(i, q.at(i)) + this->MIN[i],
+          this->RAD_2_TICKS(i, q.at(i)),
           this->SPEED);
         this->q.at(i) = q.at(i);
     }
@@ -90,7 +92,7 @@ void Robot::set_des_q_deg(const std::vector<float> & q)
     for(uint i = 0; i < this->L.size(); i++)
     {
         cmd += this->format_cmd(i,
-            this->RAD_2_TICKS(i, q.at(i)*DEG2RAD) + this->MIN[i],
+            this->RAD_2_TICKS(i, q.at(i)*DEG2RAD),
             this->SPEED);
         this->q.at(i) = q.at(i)*DEG2RAD;
     }
@@ -107,7 +109,7 @@ void Robot::homing()
     for(uint i = 0; i < this->L.size(); i++)
     {
         cmd += this->format_cmd(i,
-            this->RAD_2_TICKS(i, this->HOME.at(i)) + this->MIN[i],
+            this->RAD_2_TICKS(i, this->HOME.at(i)),
             0);
     }
     cmd += "\r";
@@ -145,7 +147,7 @@ void Robot::set_des_gripper(GripperState state)
 */
 float Robot::RAD_2_TICKS(int servo, float rad)
 {
-    return (this->MAX.at(servo) - this->MIN.at(servo)) / this->RANGE.at(servo) * rad;
+    return (this->MAX.at(servo) - this->MIN.at(servo)) / this->RANGE.at(servo) * rad  + this->MIN[servo];
 }
 
 /* Find the correctly formatted string based on a command
