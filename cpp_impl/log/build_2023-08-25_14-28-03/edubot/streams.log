@@ -1,0 +1,14 @@
+[0.010s] Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+[0.038s] [35m[1mConsolidate compiler generated dependencies of target robot_node[0m
+[0.061s] [ 50%] [32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o[0m
+[2.201s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:5:22:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[K:[m[K’ token
+[2.201s]     5 | RobotNode::RobotNode [01;31m[K:[m[K public rclcpp::Node("robot_node")
+[2.201s]       |                      [01;31m[K^[m[K
+[2.202s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In member function ‘[01m[Kvoid RobotNode::cmd_callback(sensor_msgs::msg::JointState_<std::allocator<void> >::SharedPtr)[m[K’:
+[2.202s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:38:76:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kmsg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[2.202s]    38 | void RobotNode::cmd_callback([01;35m[Kconst sensor_msgs::msg::JointState::SharedPtr msg[m[K)
+[2.202s]       |                              [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[2.824s] gmake[2]: *** [CMakeFiles/robot_node.dir/build.make:76: CMakeFiles/robot_node.dir/src/robot_node.cpp.o] Error 1
+[2.825s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/robot_node.dir/all] Error 2
+[2.825s] gmake: *** [Makefile:146: all] Error 2
+[2.827s] Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8

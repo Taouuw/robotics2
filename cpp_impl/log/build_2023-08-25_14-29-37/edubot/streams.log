@@ -1,0 +1,43 @@
+[0.009s] Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+[0.041s] [35m[1mConsolidate compiler generated dependencies of target robot_node[0m
+[0.067s] [ 50%] [32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o[0m
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In constructor ‘[01m[KRobotNode::RobotNode()[m[K’:
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:15:67:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KRobot::Robot(const std::vector<double, std::allocator<double> >&)[m[K’
+[2.267s]    15 |   this->bot = new Robot(this->get_parameter("l").as_double_array()[01;31m[K)[m[K;
+[2.267s]       |                                                                   [01;31m[K^[m[K
+[2.267s] In file included from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot_node.hpp:4[m[K,
+[2.267s]                  from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:1[m[K:
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot.hpp:16:5:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KRobot::Robot(std::vector<float>&, std::string, int, int)[m[K’
+[2.267s]    16 |     [01;36m[KRobot[m[K(std::vector<float> &l,
+[2.267s]       |     [01;36m[K^~~~~[m[K
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot.hpp:16:31:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kconst std::vector<double, std::allocator<double> >[m[K’ to ‘[01m[Kstd::vector<float>&[m[K’
+[2.267s]    16 |     Robot([01;36m[Kstd::vector<float> &l[m[K,
+[2.267s]       |           [01;36m[K~~~~~~~~~~~~~~~~~~~~^[m[K
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot.hpp:12:7:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[KRobot::Robot(const Robot&)[m[K’
+[2.267s]    12 | class [01;36m[KRobot[m[K
+[2.267s]       |       [01;36m[K^~~~~[m[K
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot.hpp:12:7:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kconst std::vector<double, std::allocator<double> >[m[K’ to ‘[01m[Kconst Robot&[m[K’
+[2.267s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:19:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before numeric constant
+[2.267s]    19 |     [01;31m[K10[m[K,
+[2.268s]       |     [01;31m[K^~[m[K
+[2.270s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:26:40:[m[K [01;31m[Kerror: [m[Kinvalid use of non-static member function ‘[01m[Kconst string& rclcpp::Parameter::as_string() const[m[K’
+[2.270s]    26 |       [01;31m[Kthis->get_parameter("pub_topic").as_string[m[K, 10);
+[2.270s]       |       [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~[m[K
+[2.271s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node_interfaces/node_parameters_interface.hpp:28[m[K,
+[2.271s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/node.hpp:54[m[K,
+[2.271s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/single_threaded_executor.hpp:28[m[K,
+[2.271s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:22[m[K,
+[2.271s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[2.271s]                  from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot_node.hpp:1[m[K,
+[2.271s]                  from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:1[m[K:
+[2.271s] [01m[K/opt/ros/humble/include/rclcpp/rclcpp/parameter.hpp:157:3:[m[K [01;36m[Knote: [m[Kdeclared here
+[2.271s]   157 |   [01;36m[Kas_string[m[K() const;
+[2.271s]       |   [01;36m[K^~~~~~~~~[m[K
+[2.502s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In member function ‘[01m[Kvoid RobotNode::cmd_callback(sensor_msgs::msg::JointState_<std::allocator<void> >::SharedPtr)[m[K’:
+[2.502s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:39:76:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kmsg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[2.502s]    39 | void RobotNode::cmd_callback([01;35m[Kconst sensor_msgs::msg::JointState::SharedPtr msg[m[K)
+[2.502s]       |                              [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[2.927s] gmake[2]: *** [CMakeFiles/robot_node.dir/build.make:76: CMakeFiles/robot_node.dir/src/robot_node.cpp.o] Error 1
+[2.927s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/robot_node.dir/all] Error 2
+[2.927s] gmake: *** [Makefile:146: all] Error 2
+[2.929s] Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8

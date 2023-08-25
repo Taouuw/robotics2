@@ -1,0 +1,116 @@
+[0.000000] (-) TimerEvent: {}
+[0.001319] (edubot) JobQueued: {'identifier': 'edubot', 'dependencies': OrderedDict()}
+[0.001663] (edubot) JobStarted: {'identifier': 'edubot'}
+[0.009467] (edubot) JobProgress: {'identifier': 'edubot', 'progress': 'cmake'}
+[0.009873] (edubot) JobProgress: {'identifier': 'edubot', 'progress': 'build'}
+[0.010297] (edubot) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/anton/Desktop/edubot/cpp_impl/build/edubot', '--', '-j8', '-l8'], 'cwd': '/home/anton/Desktop/edubot/cpp_impl/build/edubot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('SDKMAN_VERSION', '5.16.0'), ('USER', 'anton'), ('LC_TIME', 'en_GB.UTF-8'), ('XDG_SEAT', 'seat0'), ('MATHEMATICA_HOME', '/usr/local/Wolfram/Mathematica/13.1'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/drake/lib:/opt/drake/lib'), ('HOME', '/home/anton'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/anton/Desktop/edubot/cpp_impl/src'), ('TERM_PROGRAM_VERSION', '1.81.1'), ('DESKTOP_SESSION', 'i3'), ('ROS_PYTHON_VERSION', '3'), ('GRADLE_HOME', '/home/anton/.sdkman/candidates/gradle/current'), ('HOMEBREW_PREFIX', '/home/linuxbrew/.linuxbrew'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'en_GB.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('SYSTEMD_EXEC_PID', '1829'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('MANDATORY_PATH', '/usr/share/gconf/i3.mandatory.path'), ('COLCON_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install'), ('INFOPATH', '/home/linuxbrew/.linuxbrew/share/info:/home/linuxbrew/.linuxbrew/share/info:'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'anton'), ('SDKMAN_CANDIDATES_API', 'https://api.sdkman.io/2'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/i3.default.path'), ('USERNAME', 'anton'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/anton/bin:/opt/drake/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/anton/.local/bin:/home/anton/bin:/home/anton/miniconda3/condabin:/home/anton/.sdkman/candidates/gradle/current/bin:/home/anton/bin:/opt/drake/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/anton/.cargo/bin:/home/anton/.local/bin:/home/anton/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/anton/.spicetify:~/Programs/julia-1.6.7/bin:/home/anton/.spicetify:~/Programs/julia-1.6.7/bin'), ('SDKMAN_CANDIDATES_DIR', '/home/anton/.sdkman/candidates'), ('HOMEBREW_CELLAR', '/home/linuxbrew/.linuxbrew/Cellar'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'en_GB.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'i3'), ('LC_TELEPHONE', 'en_GB.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'i3'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-ac625f45a7.sock'), ('SDKMAN_DIR', '/home/anton/.sdkman'), ('SDKMAN_PLATFORM', 'linuxx64'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install/edubot:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/anton/miniconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'i3'), ('SHELL', '/bin/bash'), ('LC_NAME', 'en_GB.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'i3'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_GB.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_GB.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('XDG_VTNR', '2'), ('PWD', '/home/anton/Desktop/edubot/cpp_impl/build/edubot'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-i3:/etc/xdg'), ('CONDA_EXE', '/home/anton/miniconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'ibus'), ('XDG_DATA_DIRS', '/usr/share/i3:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/opt/drake/lib/python3.10/site-packages:/opt/drake/lib/python3.10/site-packages'), ('HOMEBREW_REPOSITORY', '/home/linuxbrew/.linuxbrew/Homebrew'), ('LC_NUMERIC', 'en_GB.UTF-8'), ('I3SOCK', '/run/user/1000/i3/ipc-socket.2020'), ('LC_PAPER', 'en_GB.UTF-8'), ('COLCON', '1'), ('MANPATH', '/home/linuxbrew/.linuxbrew/share/man:/home/linuxbrew/.linuxbrew/share/man::'), ('CMAKE_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install/edubot:/opt/ros/humble')]), 'shell': False}
+[0.044125] (edubot) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target robot_node\x1b[0m\n'}
+[0.069543] (edubot) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o\x1b[0m\n'}
+[0.099829] (-) TimerEvent: {}
+[0.200099] (-) TimerEvent: {}
+[0.300411] (-) TimerEvent: {}
+[0.400736] (-) TimerEvent: {}
+[0.501054] (-) TimerEvent: {}
+[0.601368] (-) TimerEvent: {}
+[0.701655] (-) TimerEvent: {}
+[0.801936] (-) TimerEvent: {}
+[0.902187] (-) TimerEvent: {}
+[1.002458] (-) TimerEvent: {}
+[1.102723] (-) TimerEvent: {}
+[1.202998] (-) TimerEvent: {}
+[1.303276] (-) TimerEvent: {}
+[1.403568] (-) TimerEvent: {}
+[1.503848] (-) TimerEvent: {}
+[1.604152] (-) TimerEvent: {}
+[1.704403] (-) TimerEvent: {}
+[1.804686] (-) TimerEvent: {}
+[1.904955] (-) TimerEvent: {}
+[2.005224] (-) TimerEvent: {}
+[2.105496] (-) TimerEvent: {}
+[2.205800] (-) TimerEvent: {}
+[2.306128] (-) TimerEvent: {}
+[2.406376] (-) TimerEvent: {}
+[2.506632] (-) TimerEvent: {}
+[2.531865] (edubot) StderrLine: {'line': b'\x1b[01m\x1b[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid RobotNode::cmd_callback(trajectory_msgs::msg::JointTrajectory_<std::allocator<void> >::SharedPtr)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[2.532043] (edubot) StderrLine: {'line': b'\x1b[01m\x1b[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:43:85:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kmsg\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[2.532110] (edubot) StderrLine: {'line': b'   43 | void RobotNode::cmd_callback(\x1b[01;35m\x1b[Kconst trajectory_msgs::msg::JointTrajectory::SharedPtr msg\x1b[m\x1b[K)\n'}
+[2.532156] (edubot) StderrLine: {'line': b'      |                              \x1b[01;35m\x1b[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[2.606816] (-) TimerEvent: {}
+[2.707083] (-) TimerEvent: {}
+[2.807343] (-) TimerEvent: {}
+[2.907717] (-) TimerEvent: {}
+[3.007992] (-) TimerEvent: {}
+[3.108244] (-) TimerEvent: {}
+[3.208511] (-) TimerEvent: {}
+[3.308798] (-) TimerEvent: {}
+[3.409071] (-) TimerEvent: {}
+[3.509378] (-) TimerEvent: {}
+[3.609652] (-) TimerEvent: {}
+[3.710026] (-) TimerEvent: {}
+[3.810336] (-) TimerEvent: {}
+[3.910702] (-) TimerEvent: {}
+[4.011024] (-) TimerEvent: {}
+[4.111377] (-) TimerEvent: {}
+[4.211686] (-) TimerEvent: {}
+[4.311963] (-) TimerEvent: {}
+[4.412245] (-) TimerEvent: {}
+[4.512556] (-) TimerEvent: {}
+[4.612832] (-) TimerEvent: {}
+[4.713112] (-) TimerEvent: {}
+[4.813387] (-) TimerEvent: {}
+[4.913658] (-) TimerEvent: {}
+[5.013959] (-) TimerEvent: {}
+[5.114278] (-) TimerEvent: {}
+[5.214619] (-) TimerEvent: {}
+[5.314966] (-) TimerEvent: {}
+[5.415245] (-) TimerEvent: {}
+[5.515518] (-) TimerEvent: {}
+[5.615816] (-) TimerEvent: {}
+[5.716125] (-) TimerEvent: {}
+[5.816474] (-) TimerEvent: {}
+[5.916832] (-) TimerEvent: {}
+[6.017072] (-) TimerEvent: {}
+[6.117323] (-) TimerEvent: {}
+[6.217586] (-) TimerEvent: {}
+[6.317862] (-) TimerEvent: {}
+[6.418130] (-) TimerEvent: {}
+[6.518435] (-) TimerEvent: {}
+[6.618742] (-) TimerEvent: {}
+[6.718986] (-) TimerEvent: {}
+[6.819244] (-) TimerEvent: {}
+[6.919480] (-) TimerEvent: {}
+[7.019714] (-) TimerEvent: {}
+[7.120022] (-) TimerEvent: {}
+[7.220287] (-) TimerEvent: {}
+[7.267173] (edubot) StdoutLine: {'line': b'[ 66%] \x1b[32m\x1b[1mLinking CXX executable robot_node\x1b[0m\n'}
+[7.320401] (-) TimerEvent: {}
+[7.420662] (-) TimerEvent: {}
+[7.521003] (-) TimerEvent: {}
+[7.621324] (-) TimerEvent: {}
+[7.721631] (-) TimerEvent: {}
+[7.745377] (edubot) StdoutLine: {'line': b'[100%] Built target robot_node\n'}
+[7.757700] (edubot) CommandEnded: {'returncode': 0}
+[7.784140] (edubot) JobProgress: {'identifier': 'edubot', 'progress': 'install'}
+[7.793978] (edubot) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/anton/Desktop/edubot/cpp_impl/build/edubot'], 'cwd': '/home/anton/Desktop/edubot/cpp_impl/build/edubot', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('SDKMAN_VERSION', '5.16.0'), ('USER', 'anton'), ('LC_TIME', 'en_GB.UTF-8'), ('XDG_SEAT', 'seat0'), ('MATHEMATICA_HOME', '/usr/local/Wolfram/Mathematica/13.1'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib:/opt/drake/lib:/opt/drake/lib'), ('HOME', '/home/anton'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('CONDA_SHLVL', '0'), ('OLDPWD', '/home/anton/Desktop/edubot/cpp_impl/src'), ('TERM_PROGRAM_VERSION', '1.81.1'), ('DESKTOP_SESSION', 'i3'), ('ROS_PYTHON_VERSION', '3'), ('GRADLE_HOME', '/home/anton/.sdkman/candidates/gradle/current'), ('HOMEBREW_PREFIX', '/home/linuxbrew/.linuxbrew'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('LC_MONETARY', 'en_GB.UTF-8'), ('VSCODE_GIT_ASKPASS_NODE', '/usr/share/code/code'), ('SYSTEMD_EXEC_PID', '1829'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('_CE_M', ''), ('MANDATORY_PATH', '/usr/share/gconf/i3.mandatory.path'), ('COLCON_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install'), ('INFOPATH', '/home/linuxbrew/.linuxbrew/share/info:/home/linuxbrew/.linuxbrew/share/info:'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'anton'), ('SDKMAN_CANDIDATES_API', 'https://api.sdkman.io/2'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/i3.default.path'), ('USERNAME', 'anton'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '2'), ('_CE_CONDA', ''), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/anton/bin:/opt/drake/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/anton/.local/bin:/home/anton/bin:/home/anton/miniconda3/condabin:/home/anton/.sdkman/candidates/gradle/current/bin:/home/anton/bin:/opt/drake/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:/home/anton/.cargo/bin:/home/anton/.local/bin:/home/anton/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/anton/.spicetify:~/Programs/julia-1.6.7/bin:/home/anton/.spicetify:~/Programs/julia-1.6.7/bin'), ('SDKMAN_CANDIDATES_DIR', '/home/anton/.sdkman/candidates'), ('HOMEBREW_CELLAR', '/home/linuxbrew/.linuxbrew/Cellar'), ('PAPERSIZE', 'a4'), ('LC_ADDRESS', 'en_GB.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'i3'), ('LC_TELEPHONE', 'en_GB.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'i3'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-ac625f45a7.sock'), ('SDKMAN_DIR', '/home/anton/.sdkman'), ('SDKMAN_PLATFORM', 'linuxx64'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install/edubot:/opt/ros/humble'), ('CONDA_PYTHON_EXE', '/home/anton/miniconda3/bin/python'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'i3'), ('SHELL', '/bin/bash'), ('LC_NAME', 'en_GB.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'i3'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_GB.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_GB.UTF-8'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', '--ms-enable-electron-run-as-node'), ('QT_IM_MODULE', 'ibus'), ('XDG_VTNR', '2'), ('PWD', '/home/anton/Desktop/edubot/cpp_impl/build/edubot'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-i3:/etc/xdg'), ('CONDA_EXE', '/home/anton/miniconda3/bin/conda'), ('CLUTTER_IM_MODULE', 'ibus'), ('XDG_DATA_DIRS', '/usr/share/i3:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/opt/drake/lib/python3.10/site-packages:/opt/drake/lib/python3.10/site-packages'), ('HOMEBREW_REPOSITORY', '/home/linuxbrew/.linuxbrew/Homebrew'), ('LC_NUMERIC', 'en_GB.UTF-8'), ('I3SOCK', '/run/user/1000/i3/ipc-socket.2020'), ('LC_PAPER', 'en_GB.UTF-8'), ('COLCON', '1'), ('MANPATH', '/home/linuxbrew/.linuxbrew/share/man:/home/linuxbrew/.linuxbrew/share/man::'), ('CMAKE_PREFIX_PATH', '/home/anton/Desktop/edubot/cpp_impl/install/edubot:/opt/ros/humble')]), 'shell': False}
+[7.803933] (edubot) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[7.804527] (edubot) StdoutLine: {'line': b'-- Installing: /home/anton/Desktop/edubot/cpp_impl/install/edubot/lib/edubot/robot_node\n'}
+[7.809406] (edubot) StdoutLine: {'line': b'-- Set runtime path of "/home/anton/Desktop/edubot/cpp_impl/install/edubot/lib/edubot/robot_node" to ""\n'}
+[7.809639] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/package_run_dependencies/edubot\n'}
+[7.809813] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/parent_prefix_path/edubot\n'}
+[7.809917] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/ament_prefix_path.sh\n'}
+[7.810013] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/ament_prefix_path.dsv\n'}
+[7.810105] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/path.sh\n'}
+[7.810198] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/path.dsv\n'}
+[7.810288] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.bash\n'}
+[7.810379] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.sh\n'}
+[7.810539] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.zsh\n'}
+[7.810637] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.dsv\n'}
+[7.810727] (edubot) StdoutLine: {'line': b'-- Installing: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/package.dsv\n'}
+[7.810821] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/packages/edubot\n'}
+[7.810907] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/cmake/edubotConfig.cmake\n'}
+[7.810990] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/cmake/edubotConfig-version.cmake\n'}
+[7.811078] (edubot) StdoutLine: {'line': b'-- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/package.xml\n'}
+[7.812908] (edubot) CommandEnded: {'returncode': 0}
+[7.822088] (-) TimerEvent: {}
+[7.882823] (edubot) JobEnded: {'identifier': 'edubot', 'rc': 0}
+[7.883781] (-) EventReactorShutdown: {}

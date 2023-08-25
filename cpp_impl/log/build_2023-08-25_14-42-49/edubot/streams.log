@@ -1,0 +1,26 @@
+[0.012s] Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+[0.052s] [35m[1mConsolidate compiler generated dependencies of target robot_node[0m
+[0.085s] [ 33%] [32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o[0m
+[0.712s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:2:9:[m[K [01;31m[Kerror: [m[K#include expects "FILENAME" or <FILENAME>
+[0.712s]     2 | #include
+[0.712s]       |         [01;31m[K^[m[K
+[3.249s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In member function ‘[01m[Kvoid RobotNode::cmd_callback(trajectory_msgs::msg::JointTrajectory_<std::allocator<void> >::SharedPtr)[m[K’:
+[3.249s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:44:85:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kmsg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[3.249s]    44 | void RobotNode::cmd_callback([01;35m[Kconst trajectory_msgs::msg::JointTrajectory::SharedPtr msg[m[K)
+[3.249s]       |                              [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[3.249s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In member function ‘[01m[Kvoid RobotNode::timer_callback()[m[K’:
+[3.250s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:53:28:[m[K [01;31m[Kerror: [m[Kinvalid use of non-static member function ‘[01m[Kstd::vector<float> Robot::get_q()[m[K’
+[3.250s]    53 |   js.position = this->bot->[01;31m[Kget_q[m[K;
+[3.250s]       |                            [01;31m[K^~~~~[m[K
+[3.250s] In file included from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot_node.hpp:4[m[K,
+[3.250s]                  from [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:1[m[K:
+[3.250s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/include/edubot/robot.hpp:31:24:[m[K [01;36m[Knote: [m[Kdeclared here
+[3.250s]    31 |     std::vector<float> [01;36m[Kget_q[m[K();
+[3.250s]       |                        [01;36m[K^~~~~[m[K
+[3.250s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:55:25:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing SharedPtr = class std::shared_ptr<rclcpp::Publisher<sensor_msgs::msg::JointState_<std::allocator<void> > > >[m[K’ {aka ‘[01m[Kclass std::shared_ptr<rclcpp::Publisher<sensor_msgs::msg::JointState_<std::allocator<void> > > >[m[K’} has no member named ‘[01m[Kpublish[m[K’
+[3.250s]    55 |   this->joint_state_pub.[01;31m[Kpublish[m[K(js);
+[3.250s]       |                         [01;31m[K^~~~~~~[m[K
+[5.424s] gmake[2]: *** [CMakeFiles/robot_node.dir/build.make:76: CMakeFiles/robot_node.dir/src/robot_node.cpp.o] Error 1
+[5.424s] gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/robot_node.dir/all] Error 2
+[5.424s] gmake: *** [Makefile:146: all] Error 2
+[5.426s] Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8

@@ -1,0 +1,30 @@
+[0.009s] Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+[0.064s] [35m[1mConsolidate compiler generated dependencies of target robot_node[0m
+[0.095s] [ 33%] [32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o[0m
+[2.537s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:[m[K In member function ‘[01m[Kvoid RobotNode::cmd_callback(trajectory_msgs::msg::JointTrajectory_<std::allocator<void> >::SharedPtr)[m[K’:
+[2.537s] [01m[K/home/anton/Desktop/edubot/cpp_impl/src/edubot/src/robot_node.cpp:42:85:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kmsg[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+[2.537s]    42 | void RobotNode::cmd_callback([01;35m[Kconst trajectory_msgs::msg::JointTrajectory::SharedPtr msg[m[K)
+[2.537s]       |                              [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~[m[K
+[7.722s] [ 66%] [32m[1mLinking CXX executable robot_node[0m
+[8.203s] [100%] Built target robot_node
+[8.215s] Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+[8.252s] Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/anton/Desktop/edubot/cpp_impl/build/edubot
+[8.261s] -- Install configuration: ""
+[8.262s] -- Installing: /home/anton/Desktop/edubot/cpp_impl/install/edubot/lib/edubot/robot_node
+[8.266s] -- Set runtime path of "/home/anton/Desktop/edubot/cpp_impl/install/edubot/lib/edubot/robot_node" to ""
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/package_run_dependencies/edubot
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/parent_prefix_path/edubot
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/ament_prefix_path.sh
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/ament_prefix_path.dsv
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/path.sh
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/environment/path.dsv
+[8.267s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.bash
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.sh
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.zsh
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/local_setup.dsv
+[8.268s] -- Installing: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/package.dsv
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/ament_index/resource_index/packages/edubot
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/cmake/edubotConfig.cmake
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/cmake/edubotConfig-version.cmake
+[8.268s] -- Up-to-date: /home/anton/Desktop/edubot/cpp_impl/install/edubot/share/edubot/package.xml
+[8.270s] Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/anton/Desktop/edubot/cpp_impl/build/edubot

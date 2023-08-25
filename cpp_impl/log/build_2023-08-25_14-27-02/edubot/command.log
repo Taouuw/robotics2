@@ -1,0 +1,4 @@
+Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/anton/Desktop/edubot/cpp_impl/src/edubot -DCMAKE_INSTALL_PREFIX=/home/anton/Desktop/edubot/cpp_impl/install/edubot
+Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/anton/Desktop/edubot/cpp_impl/src/edubot -DCMAKE_INSTALL_PREFIX=/home/anton/Desktop/edubot/cpp_impl/install/edubot
+Invoking command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
+Invoked command in '/home/anton/Desktop/edubot/cpp_impl/build/edubot' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/anton/Desktop/edubot/cpp_impl/build/edubot -- -j8 -l8
