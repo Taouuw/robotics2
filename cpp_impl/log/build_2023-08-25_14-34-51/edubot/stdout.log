@@ -1,3 +1,0 @@
-[35m[1mConsolidate compiler generated dependencies of target robot_node[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/robot_node.dir/src/robot_node.cpp.o[0m
-[100%] [32m[1mLinking CXX executable robot_node[0m
