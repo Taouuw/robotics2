@@ -2,6 +2,13 @@
 #include <vector>
 #include <boost/asio.hpp>
 
+#include "rclcpp/rclcpp.hpp"
+#include "trajectory_msgs/msg/joint_trajectory.hpp"
+#include "sensor_msgs/msg/joint_state.hpp"
+
+
+constexpr float DEG2RAD = M_PI / 180.0;
+constexpr float RAD2DEG = 180.0 / M_PI;
 
 enum GripperState
 {
@@ -9,48 +16,42 @@ enum GripperState
     Open = 1
 };
 
-class Robot
+class Robot : public rclcpp::Node
 {
 public:
 
-    Robot(std::vector<float> &l,
-          std::string ser="/dev/ttyUSB0",
-          int baud=9600,
-          int speed=750);
+    Robot(uint n);
 
     ~Robot();
 
-    void set_des_q_single_rad(int servo, float q);
-    void set_des_q_single_deg(int servo, float q);
+protected:
+
+    virtual void set_des_q_single_rad(uint servo, float q) = 0;
+    virtual void set_des_q_single_deg(uint servo, float q) = 0;
     
-    void set_des_q_rad(const std::vector<float> & q);
-    void set_des_q_deg(const std::vector<float> & q);
+    virtual void set_des_q_rad(const std::vector<float> & q) = 0;
+    virtual void set_des_q_deg(const std::vector<float> & q) = 0;
 
-    void set_des_gripper(GripperState state);
+    virtual void set_des_gripper(GripperState state) = 0;
 
-    void homing();
+    virtual void homing() = 0;
 
-    std::vector<float> get_q();
-    GripperState get_gripper();
+    virtual std::vector<float> get_q();
+    virtual GripperState get_gripper();
 
-private:
-    
-    const std::vector<float> HOME;
-    const std::vector<float> L; 
-    const int SPEED;
-
-    const std::vector<int> MIN;
-    const std::vector<int> MAX;
-    const std::vector<float> RANGE;
-
+    uint n;
     std::vector<float> q;
     GripperState gripper;
 
-    boost::asio::serial_port* serial;
+private:
+    
+    
+    rclcpp::Subscription<trajectory_msgs::msg::JointTrajectory>::SharedPtr joint_cmd_sub;
+    rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr joint_state_pub;
 
-    void write_cmd(std::string cmd);
-    std::string format_cmd(int servo, int pos, int vel);
-    float RAD_2_TICKS(int servo, float rad);
+    rclcpp::TimerBase::SharedPtr _timer;
 
+    void cmd_callback(const trajectory_msgs::msg::JointTrajectory::SharedPtr msg);
+    void timer_callback();    
 
 };

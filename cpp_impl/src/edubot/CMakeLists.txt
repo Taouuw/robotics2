@@ -14,15 +14,24 @@ find_package(trajectory_msgs REQUIRED)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(robot_node src/robot_node.cpp src/robot.cpp)
-ament_target_dependencies(robot_node
+add_executable(robot_hw src/robot_hw.cpp src/robot.cpp)
+ament_target_dependencies(robot_hw
     rclcpp sensor_msgs trajectory_msgs)
-target_include_directories(robot_node PUBLIC
+target_include_directories(robot_hw PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
   $<INSTALL_INTERFACE:include>)
-target_compile_features(robot_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_compile_features(robot_hw PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-install(TARGETS robot_node
+add_executable(robot_sim src/robot_sim.cpp src/robot.cpp)
+ament_target_dependencies(robot_sim
+    rclcpp sensor_msgs trajectory_msgs)
+target_include_directories(robot_sim PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
+  $<INSTALL_INTERFACE:include>)
+target_compile_features(robot_sim PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+
+
+install(TARGETS robot_hw robot_sim
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

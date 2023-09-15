@@ -4,173 +4,62 @@
 #include <cmath>
 #include <cassert>
 
-constexpr float DEG2RAD = M_PI / 180.0;
-constexpr float RAD2DEG = 180.0 / M_PI;
-
-Robot::Robot(std::vector<float> &l,
-             std::string ser,
-             int baud,
-             int speed):
-                HOME({DEG2RAD * 45, DEG2RAD * 110, DEG2RAD * 180, DEG2RAD * 30}),
-                L(l),
-                SPEED(speed),
-                MIN({500, 500, 500, 500}),
-                MAX({2500, 2500, 2500, 2500}),
-                RANGE({M_PI, M_PI, M_PI, M_PI}),
+Robot::Robot(uint n):
+                Node("robot"),
+                n(n),
                 q({0.0, 0.0, 0.0, 0.0}),
                 gripper(GripperState::Closed)
 {
+    using namespace std::chrono_literals;
 
-    /* Open the serial port for communication */
-    boost::asio::io_service io;
-    this->serial = new boost::asio::serial_port(io, ser);
-    this->serial->set_option(boost::asio::serial_port_base::baud_rate(baud));
-    this->serial->set_option(boost::asio::serial_port_base::character_size(8 /* data bits */));
-    this->serial->set_option(boost::asio::serial_port_base::parity(boost::asio::serial_port_base::parity::none));
-    this->serial->set_option(boost::asio::serial_port_base::stop_bits(boost::asio::serial_port_base::stop_bits::one));
+    this->declare_parameter("f", 24.0);
+    this->declare_parameter("pub_topic", "joint_states");
+    this->declare_parameter("sub_topic", "joint_cmds");
 
-    this->homing();
-    this->set_des_gripper(GripperState::Open);
+    this->joint_cmd_sub = this->create_subscription<trajectory_msgs::msg::JointTrajectory>(
+        this->get_parameter("sub_topic").as_string(),
+        10,
+        std::bind(&Robot::cmd_callback,
+                this,
+                std::placeholders::_1)
+    );
+
+    this->joint_state_pub = this->create_publisher<sensor_msgs::msg::JointState>(
+        this->get_parameter("pub_topic").as_string(), 10);
+
+    this->_timer = this->create_wall_timer(1.0 / this->get_parameter("f").as_double() * 1s,
+                                           std::bind(&Robot::timer_callback,
+                                                     this));
 
 }
 
 Robot::~Robot()
 {
-    /* Close the serial port and delete the serial port pointer */
-    if (this->serial->is_open()) this->serial->close();
-    delete this->serial;
 }
 
-/* Set a single servo reference position
-*   @param servo: The servo index
-*   @param     q: The position in radians */
-void Robot::set_des_q_single_rad(int servo, float q)
+/* Callback function for when a new desired trajectory is published. 
+ * We assume the trajectory only contains one JointTrajectoryPoint: the desired one  */
+void Robot::cmd_callback(const trajectory_msgs::msg::JointTrajectory::SharedPtr msg)
 {
-    assert(servo >= 0 && servo <= (int)this->L.size());
-    std::string cmd = this->format_cmd(servo,
-                                       this->RAD_2_TICKS(servo, q),
-                                       this->SPEED);
-    cmd += "\r";
-
-    this->write_cmd(cmd);
-    this->q.at(servo) = q;
-}
-
-/* Set a single servo reference position
-*   @param servo: The servo index
-*   @param     q: The position in degrees */
-void Robot::set_des_q_single_deg(int servo, float q)
-{
-    this->set_des_q_single_rad(servo, q * RAD2DEG);
-}
-
-/* Set all servo reference position
-*   @param     q: The position in rad */
-void Robot::set_des_q_rad(const std::vector<float> & q)
-{
-    assert(q.size() == this->L.size());
-    std::string cmd = "";
-    for(uint i = 0; i < this->L.size(); i++)
+    std::vector<float> des_q(this->n);
+    for(uint i = 0; i < this->n; i++)
     {
-        cmd += this->format_cmd(i,
-          this->RAD_2_TICKS(i, q.at(i)),
-          this->SPEED);
-        this->q.at(i) = q.at(i);
-    }
-    cmd += "\r";
-
-    this->write_cmd(cmd);
+        des_q.at(i) = msg->points[0].positions[i];
+    } 
+    this->set_des_q_rad(des_q);
 }
-
-
-/* Set all servo reference position
-*   @param     q: The position in degree */
-void Robot::set_des_q_deg(const std::vector<float> & q)
+    
+void Robot::timer_callback()
 {
-    assert(q.size() == this->L.size());
-    std::string cmd = "";
-    for(uint i = 0; i < this->L.size(); i++)
-    {
-        cmd += this->format_cmd(i,
-            this->RAD_2_TICKS(i, q.at(i)*DEG2RAD),
-            this->SPEED);
-        this->q.at(i) = q.at(i)*DEG2RAD;
-    }
-    cmd += "\r";
+  sensor_msgs::msg::JointState js;
+  js.header.stamp = this->now();
+  std::vector<float> q_float = this->get_q();
+  std::vector<double> q(q_float.begin(), q_float.end());
+  js.position = q;
 
-    this->write_cmd(cmd);
+  this->joint_state_pub->publish(js);
 
-    std::cout<< cmd << std::endl;
-}
-
-void Robot::homing()
-{
-    std::string cmd = "";
-    for(uint i = 0; i < this->L.size(); i++)
-    {
-        cmd += this->format_cmd(i,
-            this->RAD_2_TICKS(i, this->HOME.at(i)),
-            0);
-    }
-    cmd += "\r";
-
-    this->write_cmd(cmd);
-}
-
-/* Set the currently desired gripper state
-*    @param state: Currently desired gripper state (Open or Closed)
-*/
-void Robot::set_des_gripper(GripperState state)
-{
-    std::string cmd;
-    if(state == GripperState::Open)
-    {
-        cmd = this->format_cmd(4, 900, this->SPEED);
-        this->gripper = GripperState::Open;
-    }
-    else if(state == GripperState::Closed)
-    {
-        cmd = this->format_cmd(4, 2500, this->SPEED);
-        this->gripper = GripperState::Closed;
-    }
-    cmd += "\r";
-
-    this->write_cmd(cmd);
-}
-
-/* Function that uses the min, max and range to compute the 
-*  equivalent radians for a given number of ticks
-*   @param servo: Servo index
-*   @param   rad: Angle to be transformed
-*            
-*  @returns number of ticks equivalent to the rad angle
-*/
-float Robot::RAD_2_TICKS(int servo, float rad)
-{
-    return (this->MAX.at(servo) - this->MIN.at(servo)) / this->RANGE.at(servo) * rad  + this->MIN[servo];
-}
-
-/* Find the correctly formatted string based on a command
-*   @param servo: The servo index
-*   @param   pos: The position in ticks
-*   @param   vel: The velocity in ticks per second
-*
-*   @return correctly formatted string */
-std::string Robot::format_cmd(int servo, int pos, int vel)
-{
-    char buffer[13];
-    if (vel == 0) sprintf(buffer, "#%dP%04d", servo, pos);
-    else sprintf(buffer, "#%dP%04dS%03d", servo, pos, vel);
-    return std::string(buffer);
-}
-
-/* Write the command to the serial port
-*   @param cmd: command to be forwarded
-*/
-void Robot::write_cmd(std::string cmd)
-{
-    this->serial->write_some(boost::asio::buffer(cmd, cmd.length()));
-}
+}    
 
 std::vector<float> Robot::get_q()
 {
