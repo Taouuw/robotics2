@@ -11,7 +11,7 @@ TF_Publisher::TF_Publisher():
     this->declare_parameter("world2base", std::vector<double>({0.0, 0.0, 0.0, 1.0}));
     this->declare_parameter("alignments.joint_0", std::vector<double>({0.0, 0.0, 0.0}));
     this->declare_parameter("alignments.joint_1", std::vector<double>({0.0, -M_PI_2, 0.0}));
-    this->declare_parameter("alignments.joint_2", std::vector<double>({0.0, 0.0, 0.0}));
+    this->declare_parameter("alignments.joint_2", std::vector<double>({0.0, M_PI_2, 0.0}));
     this->declare_parameter("alignments.joint_3", std::vector<double>({0.0, 0.0, 0.0}));
     this->declare_parameter("alignments.joint_4", std::vector<double>({0.0, 0.0, 0.0}));
     
@@ -62,6 +62,8 @@ void TF_Publisher::joint_callback(const sensor_msgs::msg::JointState::SharedPtr 
     
     this->tf_broadcaster_->sendTransform(t);
 
+    Eigen::Vector3d dir = Eigen::Vector3d::UnitZ();
+
     for(uint i = 1; i < this->_l.size(); i++)
     {   
         t.header.frame_id = t.child_frame_id;
@@ -70,10 +72,8 @@ void TF_Publisher::joint_callback(const sensor_msgs::msg::JointState::SharedPtr 
         t.child_frame_id = child_frame_id;
 
         translation = this->_l.at(i)
-                        * Eigen::Vector3d::UnitZ();
-        rotation =  this->_alignments.at(i);
-        //(common::rot_x(msg->position[i-1]) 
-        //                * this->_alignments.at(i));
+                        * dir;
+        rotation =  this->_alignments.at(i) * common::rot_x(msg->position[i-1]) ;
 
         t.transform.translation.x = translation.x();
         t.transform.translation.y = translation.y();
@@ -86,6 +86,8 @@ void TF_Publisher::joint_callback(const sensor_msgs::msg::JointState::SharedPtr 
         t.transform.rotation.z = q.z();
 
         this->tf_broadcaster_->sendTransform(t);
+
+        dir = this->_alignments.at(i).transpose() * dir;
     }
     
 }
