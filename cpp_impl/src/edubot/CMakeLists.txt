@@ -54,6 +54,8 @@ install(TARGETS robot_hw robot_sim tf_publisher
 install(DIRECTORY 
   launch
   config
+  rviz 
+  urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
