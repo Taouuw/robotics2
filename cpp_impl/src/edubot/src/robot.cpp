@@ -8,7 +8,8 @@ Robot::Robot(uint n):
                 Node("robot"),
                 n(n),
                 q({0.0, 0.0, 0.0, 0.0}),
-                gripper(GripperState::Closed)
+                gripper(GripperState::Closed),
+                _names{"link1_joint", "link2_joint", "link3_joint", "link4_joint"}
 {
     using namespace std::chrono_literals;
 
@@ -31,6 +32,7 @@ Robot::Robot(uint n):
                                            std::bind(&Robot::timer_callback,
                                                      this));
 
+
 }
 
 Robot::~Robot()
@@ -52,9 +54,14 @@ void Robot::cmd_callback(const trajectory_msgs::msg::JointTrajectory::SharedPtr 
 void Robot::timer_callback()
 {
   sensor_msgs::msg::JointState js;
+  js.name = {"", "", "" ,""};
+
+  for(uint i = 0; i < 4; i++) js.name[i] = this->_names[i];
+
   js.header.stamp = this->now();
   std::vector<float> q_float = this->get_q();
   std::vector<double> q(q_float.begin(), q_float.end());
+  
   js.position = q;
 
   this->joint_state_pub->publish(js);

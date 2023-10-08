@@ -54,4 +54,5 @@ private:
     void cmd_callback(const trajectory_msgs::msg::JointTrajectory::SharedPtr msg);
     void timer_callback();    
 
+    const char *_names[4];
 };
