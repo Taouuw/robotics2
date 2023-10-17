@@ -5,32 +5,28 @@
   <xacro:property name="PI_2" value="1.57079632679"/>
   <!-- ****************** ROBOT CONSTANTS *******************************  -->
   <!-- Define the size of the robot's main chassis in meters -->
-  <xacro:property name="base_radius" value="0.5"/>
-  <xacro:property name="base_height" value="0.40"/>
-  <xacro:property name="link_width" value="0.30"/>
-  <xacro:property name="link_height" value="0.30"/>
-  <xacro:property name="link_1_length" value="0.20"/>
-  <xacro:property name="link_2_length" value="0.50"/>
-  <xacro:property name="link_3_length" value="0.50"/>
-  <xacro:property name="link_4_length" value="0.20"/>
+  <xacro:property name="base_radius" value="0.05"/>
+  <xacro:property name="base_height" value="0.05"/>
+  <xacro:property name="link_width" value="0.1"/>
+  <xacro:property name="link_height" value="0.07"/>
+  <xacro:property name="link_1_length" value="0.02"/>
+  <xacro:property name="link_2_length" value="0.0825"/>
+  <xacro:property name="link_3_length" value="0.086"/>
+  <xacro:property name="link_4_length" value="0.075"/>
 	
-
   <link name="world"/>
 
   <!-- ********************** ROBOT BASE *********************************  -->
   <link name="base">
     <visual>
-      <origin xyz="0 0 ${0.5*base_height}" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0 0 0" rpy="${PI_2} 0.0 0.0"/>
       <geometry>
-        <cylinder radius="${base_radius}" length="${base_height}"/>
-        <!--<mesh filename="package://two_wheeled_robot/meshes/robot_base.stl" />-->
+        <mesh filename="package://edubot/meshes/Base.dae" scale="1 1 1"/>
       </geometry>
-      <material name="Red">
-        <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
-      </material>
     </visual>
 
     <collision>
+      <origin xyz="0 0 ${0.5*base_height}"/>
       <geometry>
         <cylinder radius="${base_radius}" length="${base_height}"/>
       </geometry>
@@ -40,17 +36,14 @@
   <!-- ********************** LINK 1 *********************************  -->
   <link name="link1">
     <visual>
-      <origin xyz="0 0 ${link_1_length/2}" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0 0 -0.05" rpy="${PI_2} 0.0 0.0"/>
       <geometry>
-        <box size="${link_width} ${link_height} ${link_1_length}"/>
-        <!--<mesh filename="package://two_wheeled_robot/meshes/robot_base.stl" />-->
+        <mesh filename="package://edubot/meshes/Link1.dae" scale="1 1 1"/>
       </geometry>
-      <material name="Red">
-        <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
-      </material>
     </visual>
 
     <collision>
+      <origin xyz="0 0 ${link_1_length/2}" rpy="0.0 0.0 0.0"/>
       <geometry>
         <box size="${link_width} ${link_height} ${link_1_length}"/>
       </geometry>
@@ -60,17 +53,14 @@
   <!-- ********************** LINK 2 *********************************  -->
   <link name="link2">
     <visual>
-      <origin xyz="0 0 ${link_2_length/2}" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0 0 -0.07" rpy="${PI_2} 0.0 0.0"/>
       <geometry>
-        <box size="${link_width} ${link_height} ${link_2_length}"/>
-        <!--<mesh filename="package://two_wheeled_robot/meshes/robot_base.stl" />-->
+        <mesh filename="package://edubot/meshes/Link2.dae" scale="1 1 1"/>
       </geometry>
-      <material name="Red">
-        <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
-      </material>
     </visual>
 
     <collision>
+      <origin xyz="0 0 ${link_2_length/2}" rpy="0.0 0.0 0.0"/>
       <geometry>
         <box size="${link_width} ${link_height} ${link_2_length}"/>
       </geometry>
@@ -80,37 +70,31 @@
   <!-- ********************** LINK 3 *********************************  -->
   <link name="link3">
     <visual>
-      <origin xyz="0 0 ${link_3_length/2}" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0 0.005 -0.1525" rpy="${PI_2} 0.0 0.0"/>
       <geometry>
-        <box size="${link_width} ${link_height} ${link_3_length}"/>
-        <!--<mesh filename="package://two_wheeled_robot/meshes/robot_base.stl" />-->
+        <mesh filename="package://edubot/meshes/Link3.dae" scale="1 1 1"/>
       </geometry>
-      <material name="Red">
-        <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
-      </material>
     </visual>
 
     <collision>
+      <origin xyz="0 0 ${link_3_length/2}" rpy="0.0 0.0 0.0"/>
       <geometry>
         <box size="${link_width} ${link_height} ${link_3_length}"/>
       </geometry>
     </collision>
   </link>
 
-  <!-- ********************** LINK 3 *********************************  -->
+  <!-- ********************** LINK 4 *********************************  -->
   <link name="link4">
     <visual>
-      <origin xyz="0 0 ${link_4_length/2}" rpy="0.0 0.0 0.0"/>
+      <origin xyz="0 -0.006 -0.2375" rpy="${PI_2} 0.0 0.0"/>
       <geometry>
-        <box size="${link_width} ${link_height} ${link_4_length}"/>
-        <!--<mesh filename="package://two_wheeled_robot/meshes/robot_base.stl" />-->
+        <mesh filename="package://edubot/meshes/Link4.dae" scale="1 1 1"/>
       </geometry>
-      <material name="Red">
-        <color rgba="${255/255} ${0/255} ${0/255} 1.0"/>
-      </material>
     </visual>
 
     <collision>
+      <origin xyz="0 0 ${link_4_length/2}" rpy="0.0 0.0 0.0"/>
       <geometry>
         <box size="${link_width} ${link_height} ${link_4_length}"/>
       </geometry>
@@ -138,7 +122,7 @@
   <joint name="link2_joint" type="revolute">
     <parent link="link1"/>
     <child link="link2"/>
-    <axis xyz="1 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
     <origin xyz="0 0 ${link_1_length}" rpy="0 0 0"/>
   </joint>
@@ -146,7 +130,7 @@
   <joint name="link3_joint" type="revolute">
     <parent link="link2"/>
     <child link="link3"/>
-    <axis xyz="1 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
     <origin xyz="0 0 ${link_2_length}" rpy="0 0 0"/>
   </joint>
@@ -154,7 +138,7 @@
   <joint name="link4_joint" type="revolute">
     <parent link="link3"/>
     <child link="link4"/>
-    <axis xyz="1 0 0"/>
+    <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
     <origin xyz="0 0 ${link_3_length}" rpy="0 0 0"/>
   </joint>
