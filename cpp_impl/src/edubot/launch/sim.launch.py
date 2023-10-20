@@ -19,14 +19,8 @@ def generate_launch_description():
     start_sim = Node(package = pkg_name,
                      name = "robot_sim",
                      executable = "robot_sim")
-
-    tf_pub = Node(package = pkg_name,
-                  name = "tf_publisher",
-                  executable = "tf_publisher")
-    
     
     ld.add_action(start_sim)
-    ld.add_action(tf_pub)
 
     # Set the path to the RViz configuration settings
     default_rviz_config_path = os.path.join(pkg_share, 'rviz/rviz_basic_settings.rviz')

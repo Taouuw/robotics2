@@ -7,7 +7,7 @@ TF_Publisher::TF_Publisher():
     Node("tf_publisher")
 {
     this->declare_parameter("sub_topic", "joint_states");
-    this->declare_parameter("l", std::vector<double>({1.0, 1.0, 1.0, 1.0, 1.0}));
+    this->declare_parameter("l", std::vector<double>({2*0.05, 0.02, 0.0825, 0.086, 0.075}));
     this->declare_parameter("world2base", std::vector<double>({0.0, 0.0, 0.0, 1.0}));
     this->declare_parameter("alignments.joint_0", std::vector<double>({0.0, 0.0, 0.0}));
     this->declare_parameter("alignments.joint_1", std::vector<double>({0.0, -M_PI_2, 0.0}));
