@@ -9,6 +9,8 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(common REQUIRED)
@@ -38,6 +40,16 @@ target_include_directories(robot_sim PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(robot_sim PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
+add_executable(path_publisher src/path_publisher.cpp)
+ament_target_dependencies(path_publisher
+    rclcpp geometry_msgs nav_msgs tf2_ros)
+target_include_directories(path_publisher PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
+  $<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>
+  $<INSTALL_INTERFACE:include>)
+target_compile_features(path_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+
+
 add_executable(tf_publisher src/tf_publisher.cpp)
 ament_target_dependencies(tf_publisher
     rclcpp Eigen3 common sensor_msgs geometry_msgs tf2 tf2_ros)
@@ -48,7 +60,7 @@ target_include_directories(tf_publisher PUBLIC
 target_compile_features(tf_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
 
-install(TARGETS robot_hw robot_sim tf_publisher
+install(TARGETS robot_hw robot_sim tf_publisher path_publisher
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY 
