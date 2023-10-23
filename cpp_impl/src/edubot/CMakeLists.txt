@@ -49,18 +49,7 @@ target_include_directories(path_publisher PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(path_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-
-add_executable(tf_publisher src/tf_publisher.cpp)
-ament_target_dependencies(tf_publisher
-    rclcpp Eigen3 common sensor_msgs geometry_msgs tf2 tf2_ros)
-target_include_directories(tf_publisher PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
-  $<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(tf_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
-
-
-install(TARGETS robot_hw robot_sim tf_publisher path_publisher
+install(TARGETS robot_hw robot_sim path_publisher
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY 
