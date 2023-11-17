@@ -9,11 +9,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(common REQUIRED)
+find_package(kinematics REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 # uncomment the following section in order to fill in
@@ -42,7 +44,7 @@ target_compile_features(robot_sim PUBLIC c_std_99 cxx_std_17)  # Require C99 and
 
 add_executable(path_publisher src/path_publisher.cpp)
 ament_target_dependencies(path_publisher
-    rclcpp geometry_msgs nav_msgs tf2_ros)
+    rclcpp geometry_msgs visualization_msgs sensor_msgs nav_msgs tf2_ros kinematics)
 target_include_directories(path_publisher PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
   $<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>

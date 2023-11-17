@@ -9,9 +9,14 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(trajectory_msgs REQUIRED)
+find_package(kinematics REQUIRED)
+find_package(Eigen3 REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
+
+# Add include directories
+include_directories($<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>)
 
 add_executable(example_traj src/example_traj.cpp)
 ament_target_dependencies(example_traj rclcpp trajectory_msgs)
@@ -20,7 +25,14 @@ target_include_directories(example_traj PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(example_traj PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-install(TARGETS example_traj
+add_executable(ik_example src/ik_example.cpp)
+ament_target_dependencies(ik_example rclcpp Eigen3 trajectory_msgs kinematics)
+target_include_directories(ik_example PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/controllers>
+  $<INSTALL_INTERFACE:include>)
+target_compile_features(ik_example PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+
+install(TARGETS example_traj ik_example
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

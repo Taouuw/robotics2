@@ -1,4 +1,5 @@
 #include "path_publisher.hpp"
+#include "kinematics/kinematics.hpp"
 
 PathPublisher::PathPublisher() :
     Node("path_publisher")
@@ -16,6 +17,10 @@ PathPublisher::PathPublisher() :
     std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
   _path_pub = this->create_publisher<nav_msgs::msg::Path>("ee_path", 1);
+  _fk_pub = this->create_publisher<visualization_msgs::msg::Marker>("fk_ee", 1);
+  _joint_sub = this->create_subscription<sensor_msgs::msg::JointState>(
+                        "/joint_states", 10,
+                        std::bind(&PathPublisher::_js_callback, this, std::placeholders::_1));
 
   using namespace std::chrono_literals;
   // Call on_timer function every second
@@ -23,6 +28,33 @@ PathPublisher::PathPublisher() :
     100ms, std::bind(&PathPublisher::_on_timer, this));
 
   this->_path.header.frame_id = "world";
+}
+
+void PathPublisher::_js_callback(const sensor_msgs::msg::JointState::SharedPtr msg)
+{
+    std::vector<double> q = msg->position;
+
+    Eigen::Vector3d ee_position = kinematics::fk(q.at(0), q.at(1), q.at(2), q.at(3));
+
+    visualization_msgs::msg::Marker marker;
+    marker.header.stamp = msg->header.stamp;
+    marker.header.frame_id = "world";
+
+    marker.type = visualization_msgs::msg::Marker::SPHERE;
+    marker.action = visualization_msgs::msg::Marker::ADD;
+    marker.scale.x = 0.01;
+    marker.scale.y = 0.01;
+    marker.scale.z = 0.01;
+    marker.pose.position.x = ee_position(0);
+    marker.pose.position.y = ee_position(1);
+    marker.pose.position.z = ee_position(2);
+
+    marker.color.a = 0.75;
+    marker.color.r = 8.0/255;
+    marker.color.g = 201.0/255;
+    marker.color.b = 60.0/255;
+
+    this->_fk_pub->publish(marker);
 }
 
 void PathPublisher::_on_timer()
@@ -64,7 +96,6 @@ void PathPublisher::_on_timer()
   this->_path.poses = std::vector(this->_poses.begin(), this->_poses.end());
 
   this->_path_pub->publish(this->_path);
-
 }
 
 int main(int argc, char ** argv)
