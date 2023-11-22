@@ -25,9 +25,9 @@ void IKExample::_timer_callback()
   msg.header.stamp = now;
   
   double dt = (now - this->_beginning).seconds();
-  double x = 0.2 * sin(2*M_PI/10.0 * dt),
-         y = 0.2 * cos(2*M_PI/10.0 * dt),
-         z = 0.175;
+  double x = 0.01 * sin(2*M_PI/10.0 * dt),
+         y = 0.01 * cos(2*M_PI/10.0 * dt),
+         z = 0.07;
 
   Eigen::Vector4d q = kinematics::ik(x, y, z);
   
