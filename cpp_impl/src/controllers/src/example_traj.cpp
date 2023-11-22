@@ -26,7 +26,8 @@ void ExampleTraj::_timer_callback()
   point.positions = {HOME[0] + 0.1 * M_PI * sin(2 * M_PI / 10.0 * dt),
                     HOME[1] + 0.1 * M_PI * sin(2 * M_PI / 10.0 * dt),
                     HOME[2] + 0.25 * M_PI * (sin(2 * M_PI / 10.0 * dt) - 1),
-                    HOME[3] + 0.25 * M_PI * sin(2 * M_PI / 10.0 * dt) 
+                    HOME[3] + 0.25 * M_PI * sin(2 * M_PI / 10.0 * dt),
+                    0.5 * sin(2 * M_PI / 10.0 * dt) + 0.5
                   };
 
   msg.points = {point};
