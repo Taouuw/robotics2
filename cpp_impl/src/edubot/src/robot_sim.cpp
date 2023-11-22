@@ -40,11 +40,35 @@ void RobotSim::set_des_gripper(GripperState state)
 {
     if(state == GripperState::Open)
     {
-        this->gripper = GripperState::Open;
+        this->gripper = (float)GripperState::Open;
     }
     else if(state == GripperState::Closed)
     {
-        this->gripper = GripperState::Closed;
+        this->gripper = (float)GripperState::Closed;
+    }
+}
+
+/* Set the currently desired gripper opening 
+ * @param o: Opening degree 
+ * 0 = fully closed
+ * 1 = fully open
+ */
+void RobotSim::set_des_gripper(float o)
+{
+    /* Gripper shall be fully closed */
+    if(o <= 0)
+    {
+        this->gripper = (float)GripperState::Closed;
+    }
+    /* Gripper shall be fully open */
+    else if(o >= 1)
+    {
+        this->gripper = (float)GripperState::Open;
+    }
+    /* Opening somewhere in between */
+    else
+    {
+        this->gripper = o;
     }
 }
 

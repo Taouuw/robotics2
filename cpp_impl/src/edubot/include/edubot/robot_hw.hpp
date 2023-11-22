@@ -5,7 +5,7 @@ class RobotHW : public Robot
 
 public:
     RobotHW(std::string ser="/dev/ttyUSB0",
-            int baud=9600,
+            int baud=115200,
             int speed=750);
     ~RobotHW();
 
@@ -17,6 +17,7 @@ protected:
     void set_des_q_deg(const std::vector<float> & q)  override;
 
     void set_des_gripper(GripperState state)  override;
+    void set_des_gripper(float o) override;
 
     void homing()  override;
 

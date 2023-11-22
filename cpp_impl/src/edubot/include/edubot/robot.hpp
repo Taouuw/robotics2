@@ -33,15 +33,16 @@ protected:
     virtual void set_des_q_deg(const std::vector<float> & q) = 0;
 
     virtual void set_des_gripper(GripperState state) = 0;
+    virtual void set_des_gripper(float o) = 0;
 
     virtual void homing() = 0;
 
     virtual std::vector<float> get_q();
-    virtual GripperState get_gripper();
+    virtual float get_gripper();
 
     uint n;
     std::vector<float> q;
-    GripperState gripper;
+    float gripper;
 
 private:
     
@@ -54,5 +55,6 @@ private:
     void cmd_callback(const trajectory_msgs::msg::JointTrajectory::SharedPtr msg);
     void timer_callback();    
 
-    const char *_names[4];
+    const char *_names[6];
+    const float _MAX_GRIPPER;
 };

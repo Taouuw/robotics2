@@ -125,6 +125,43 @@ void RobotHW::set_des_gripper(GripperState state)
     this->write_cmd(cmd);
 }
 
+/* Set the currently desired gripper opening 
+ * @param o: Opening degree 
+ * 0 = fully closed
+ * 1 = fully open
+ */
+void RobotHW::set_des_gripper(float o)
+{
+    int opened = 900;
+    int closed = 2500;
+
+    std::string cmd;
+
+    /* Gripper shall be fully closed */
+    if(o <= 0)
+    {
+        cmd = this->format_cmd(4, closed, this->SPEED);
+        this->gripper = (float)GripperState::Closed;
+    }
+    /* Gripper shall be fully open */
+    else if(o >= 1)
+    {
+        cmd = this->format_cmd(4, opened, this->SPEED);
+        this->gripper = (float)GripperState::Open;
+    }
+    /* Opening somewhere in between */
+    else
+    {
+        cmd = this->format_cmd(4,
+                closed + o*(closed - opened),
+                this->SPEED);
+        this->gripper = o;
+    }
+    cmd += "\r";
+
+    this->write_cmd(cmd);
+}
+
 /* Function that uses the min, max and range to compute the 
 *  equivalent radians for a given number of ticks
 *   @param servo: Servo index
