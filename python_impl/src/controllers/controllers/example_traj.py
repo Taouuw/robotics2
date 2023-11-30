@@ -28,7 +28,9 @@ class ExampleTraj(Node):
         point.positions = [self._HOME[0] + 0.1 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
                            self._HOME[1] + 0.1 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
                            self._HOME[2] + 0.25 * np.pi * (np.sin(2 * np.pi / 10.0 * dt) - 1),
-                           self._HOME[3] + 0.25 * np.pi * np.sin(2 * np.pi / 10.0 * dt) ]
+                           self._HOME[3] + 0.25 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
+                           0.5 * np.sin(2 * np.pi / 10.0 * dt) + 0.5
+                           ]
         msg.points = [point]
 
         self._publisher.publish(msg)
