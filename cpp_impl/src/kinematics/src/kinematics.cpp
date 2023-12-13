@@ -83,6 +83,8 @@ namespace kinematics
         double q0, q1, q2, q3;
         if(in_workspace(x,y,z))
         {
+            // We need to subtract the base height from z
+            z -= (L[0] + L[1]);
 
             // From the desired x and y we can directly find q0
             q0 = atan2(y, x);
@@ -94,18 +96,14 @@ namespace kinematics
             double xw = r - L[4] * cos(pitch);
             double zw = z - L[4] * sin(pitch);
 
-            // We need to subtract the base height from zw
-            zw -= (L[0] + L[1]);
-            
-            // We find the sum of q1 and q2
-            double alpha = atan2(z, r);
-
-            // From this we find q1 and q2
-            q1 = asin((xw - L[3] * sin(alpha)) / (L[2]));
-            q2 = acos((zw - L[2] * cos(q1)) / (L[3])) - q1;
+            // Then we find q2 and q1 from the law of sines/cosines
+            q2 = acos((xw*xw + zw*zw - L[2]*L[2] - L[3]*L[3]) / (2*L[2]*L[3]));
+            double c1 = ((L[2] + L[3]*cos(q2)) * xw + L[3]*sin(q2)*zw) / (xw*xw + zw*zw);
+            double s1 = ((L[2]+L[3]*cos(q2)) * zw - L[3]*sin(q2)*xw) / (xw*xw + zw*zw);
+            q1 = atan2(s1, c1);
 
             // q3 directly follows from the pitch
-            q3 = pitch;
+            q3 = pitch - (q1 + q2);
         }
         else
         {
