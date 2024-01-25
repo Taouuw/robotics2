@@ -15,7 +15,7 @@ find_package(nav_msgs REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(common REQUIRED)
-find_package(kinematics REQUIRED)
+#find_package(kinematics REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 # uncomment the following section in order to fill in
@@ -42,16 +42,16 @@ target_include_directories(robot_sim PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_compile_features(robot_sim PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-add_executable(path_publisher src/path_publisher.cpp)
-ament_target_dependencies(path_publisher
-    rclcpp geometry_msgs visualization_msgs sensor_msgs nav_msgs tf2_ros kinematics)
-target_include_directories(path_publisher PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
-  $<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(path_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+#add_executable(path_publisher src/path_publisher.cpp)
+#ament_target_dependencies(path_publisher
+#    rclcpp geometry_msgs visualization_msgs sensor_msgs nav_msgs tf2_ros kinematics)
+#target_include_directories(path_publisher PUBLIC
+#  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/edubot>
+#  $<BUILD_INTERFACE:${EIGEN3_INCLUDE_DIR}>
+#  $<INSTALL_INTERFACE:include>)
+#target_compile_features(path_publisher PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-install(TARGETS robot_hw robot_sim path_publisher
+install(TARGETS robot_hw robot_sim #path_publisher
   DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY 
