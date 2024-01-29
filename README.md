@@ -63,17 +63,17 @@ You can run start the simulation or the driver for the robot with the following 
 
 ### For Virtual Machine Users
 
-Download and install both VirtualBox and VirtualBox Extension Pack from [here](https://www.virtualbox.org/wiki/Downloads). Ensure that both have the same versions. If you have a virtual machine already running, power it off first before installing Extension Pack and proceeding.
+Download and install both **VirtualBox** and **VirtualBox Extension Pack** from [their website](https://www.virtualbox.org/wiki/Downloads). Ensure that both have the same versions. If you have a virtual machine already running, first power it off before installing the Extension Pack and proceeding.
 
 Go to **Virtual Machine Settings > USB**, check **Enable USB Controller** and the corresponding USB type. In my case it was **USB 3.0 (xHCI) Controller**. 
 
 Connect the robot's power and USB and then power on virtual machine. Every time you open a new terminal, source your `ros` installation and call the `colcon` compilation, as stated above.
 
-Verify that it can read the USB by listing files and directories with that starts with **ttyUSB**
+Verify that the virtual machine can read the USB by listing files and directories that starts with **ttyUSB-**
 
         ls -l /dev/ttyUSB*
 
-If you get a permission denied error such as [this](https://support.termius.com/hc/en-us/articles/6325078649753-When-trying-to-make-a-serial-connection-I-get-a-Permission-denied-error#:~:text=Most%20'Permission%20denied'%20error%20messages,identify%20the%20serial%20port%20path.&text=The%20next%20step%20is%20to,running%20the%20command%20provided%20below.) add your user account to the appropriate group
+If you get a **permission denied** error such as [this](https://support.termius.com/hc/en-us/articles/6325078649753-When-trying-to-make-a-serial-connection-I-get-a-Permission-denied-error#:~:text=Most%20'Permission%20denied'%20error%20messages,identify%20the%20serial%20port%20path.&text=The%20next%20step%20is%20to,running%20the%20command%20provided%20below.) add your user account to the appropriate group by
 
         sudo usermod -a $USER -G dialout
 
