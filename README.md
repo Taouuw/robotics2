@@ -25,7 +25,7 @@ The easiest way is to add the sources and install via apt
 
 Make sure the additional ros libraries are installed
 
-        sudo apt install ros-humble-xacro ros-humble-joint-state-publisher
+        sudo apt install ros-humble-xacro ros-humble-joint-state-publisher ros-humble-joint-state-publisher-gui
 
 The required `boost` libraries are installed via
 
