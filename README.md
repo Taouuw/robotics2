@@ -8,7 +8,7 @@ This repository contains the drivers, visualization features and a simple simula
 
 To compile the pre-requisites are `ros2` and `boost`.
 ROS2 humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
-[Additional pre-requisites](#for-virtual-machine-users) if you're using a Virtual Machine.
+Additional prerequisites are found [here](#for-virtual-machine-users) if you're using a Virtual Machine.
 The easiest way is to add the sources and install via apt
 
         # Add the ROS 2 GPG key with apt.
