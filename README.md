@@ -8,6 +8,7 @@ This repository contains the drivers, visualization features and a simple simula
 
 To compile the pre-requisites are `ros2` and `boost`.
 ROS2 humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
+[Additional pre-requisites](#for-virtual-machine-users) if you're using a Virtual Machine.
 The easiest way is to add the sources and install via apt
 
         # Add the ROS 2 GPG key with apt.
@@ -59,6 +60,26 @@ You can run start the simulation or the driver for the robot with the following 
 `ros2 launch edubot rviz.launch.py` |  Launches the `rviz` visualization and a joint position interface which lets you play with the robot
 `ros2 run edubot robot_hw`          |  Starts the Hardware driver for the robot
 `ros2 run controllers example_traj` |  Starts the an controller that commands a periodic example trajectory
+
+### For Virtual Machine Users
+
+Download and install both VirtualBox and VirtualBox Extension Pack from [here](https://www.virtualbox.org/wiki/Downloads). Ensure that both have the same versions. If you have a virtual machine already running, power it off first before installing Extension Pack and proceeding.
+
+Go to **Virtual Machine Settings > USB**, check **Enable USB Controller** and the corresponding USB type. In my case it was **USB 3.0 (xHCI) Controller**. 
+
+Connect the robot's power and USB and then power on virtual machine. Every time you open a new terminal, source your `ros` installation and call the `colcon` compilation, as stated above.
+
+Verify that it can read the USB by listing files and directories with that starts with **ttyUSB**
+
+        ls -l /dev/ttyUSB*
+
+If you get a permission denied error such as [this](https://support.termius.com/hc/en-us/articles/6325078649753-When-trying-to-make-a-serial-connection-I-get-a-Permission-denied-error#:~:text=Most%20'Permission%20denied'%20error%20messages,identify%20the%20serial%20port%20path.&text=The%20next%20step%20is%20to,running%20the%20command%20provided%20below.) add your user account to the appropriate group
+
+        sudo usermod -a $USER -G dialout
+
+Log in and log out user account and then try again. Don't forget to source.
+
+Example implementation can be found [here](https://www.youtube.com/watch?v=h-EOHbVqsJg).
 
 ## Issues
 
