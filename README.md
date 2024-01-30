@@ -79,6 +79,8 @@ If you get a **permission denied** error such as [this](https://support.termius.
 
 Log in and log out user account and then try again. Don't forget to source.
 
+Important: If the USB still cannot be read, unplug everything and kill all ROS processes, (1) power the virtual machine, (2) power ON the robot emergency switch, (3) plug in the USB connector, (4) plug in power for motors.
+
 Example implementation can be found [here](https://www.youtube.com/watch?v=h-EOHbVqsJg).
 
 ## Issues
