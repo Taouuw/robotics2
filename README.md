@@ -67,7 +67,7 @@ Download and install both **VirtualBox** and **VirtualBox Extension Pack** from 
 
 Go to **Virtual Machine Settings > USB**, check **Enable USB Controller** and the corresponding USB type. In my case it was **USB 3.0 (xHCI) Controller**. 
 
-Connect the robot's power and USB and then power on virtual machine. Every time you open a new terminal, source your `ros` installation and call the `colcon` compilation, as stated above.
+Connect the robot's USB connector, power the robot motors, and then power on virtual machine. Every time you open a new terminal, source your `ros` installation and call the `colcon` compilation, as stated above.
 
 Verify that the virtual machine can read the USB by listing files and directories that starts with **ttyUSB-**
 
