@@ -5,8 +5,9 @@ class RobotHW : public Robot
 
 public:
     RobotHW(std::string ser="/dev/ttyUSB0",
-            int baud=115200,
-            int speed=750);
+            int baud=9600,
+            int speed=750,
+            int gripper_speed=9000);
     ~RobotHW();
 
 protected:
@@ -25,6 +26,7 @@ private:
 
     const std::vector<float> HOME;
     const int SPEED;
+    const int GRIPPER_SPEED;
 
     const std::vector<int> MIN;
     const std::vector<int> MAX;

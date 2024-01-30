@@ -1,9 +1,12 @@
 #include "robot_hw.hpp"
 
-RobotHW::RobotHW(std::string ser, int baud, int speed):
+RobotHW::RobotHW(std::string ser, int baud, int speed, int gripper_speed):
                 Robot(4),
-                HOME({DEG2RAD * 45, DEG2RAD * 110, DEG2RAD * 180, DEG2RAD * 30}),
+                // HOME({DEG2RAD * 45, DEG2RAD * 110, DEG2RAD * 180, DEG2RAD * 30}),
+                // For newly assembled ones
+                HOME({DEG2RAD * 90, DEG2RAD * 130, DEG2RAD * 150, DEG2RAD * 60}),
                 SPEED(speed),
+                GRIPPER_SPEED(gripper_speed),
                 MIN({500, 500, 500, 500}),
                 MAX({2500, 2500, 2500, 2500}),
                 RANGE({M_PI, M_PI, M_PI, M_PI})
@@ -112,12 +115,12 @@ void RobotHW::set_des_gripper(GripperState state)
     std::string cmd;
     if(state == GripperState::Open)
     {
-        cmd = this->format_cmd(4, 900, this->SPEED);
+        cmd = this->format_cmd(4, 900, this->GRIPPER_SPEED);
         this->gripper = GripperState::Open;
     }
     else if(state == GripperState::Closed)
     {
-        cmd = this->format_cmd(4, 2500, this->SPEED);
+        cmd = this->format_cmd(4, 2500, this->GRIPPER_SPEED);
         this->gripper = GripperState::Closed;
     }
     cmd += "\r";
@@ -132,29 +135,31 @@ void RobotHW::set_des_gripper(GripperState state)
  */
 void RobotHW::set_des_gripper(float o)
 {
-    int opened = 900;
-    int closed = 2500;
+    // int opened = 900;
+    // int closed = 2500;
+    int opened = 2200;
+    int closed = 500;
 
     std::string cmd;
 
     /* Gripper shall be fully closed */
     if(o <= 0)
     {
-        cmd = this->format_cmd(4, closed, this->SPEED);
+        cmd = this->format_cmd(4, closed, this->GRIPPER_SPEED);
         this->gripper = (float)GripperState::Closed;
     }
     /* Gripper shall be fully open */
     else if(o >= 1)
     {
-        cmd = this->format_cmd(4, opened, this->SPEED);
+        cmd = this->format_cmd(4, opened, this->GRIPPER_SPEED);
         this->gripper = (float)GripperState::Open;
     }
     /* Opening somewhere in between */
     else
     {
         cmd = this->format_cmd(4,
-                closed + o*(closed - opened),
-                this->SPEED);
+                closed + o*(opened - closed),
+                this->GRIPPER_SPEED);
         this->gripper = o;
     }
     cmd += "\r";

@@ -2,7 +2,8 @@
 
 RobotSim::RobotSim(): 
     Robot(4),
-    HOME({DEG2RAD * 45, DEG2RAD * -50, DEG2RAD * 110, DEG2RAD * 30})
+    // HOME({DEG2RAD * 45, DEG2RAD * -50, DEG2RAD * 110, DEG2RAD * 30})
+    HOME({DEG2RAD * 90, DEG2RAD * 130, DEG2RAD * 150, DEG2RAD * 60})
 {
     /* Bring to initial state */
     this->homing();
