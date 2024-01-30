@@ -4,8 +4,6 @@ constexpr float DEG2RAD = M_PI / 180.0;
 
 ExampleTraj::ExampleTraj() :
   rclcpp::Node("example_traj"),
-  // HOME{DEG2RAD * 45, DEG2RAD * -50, DEG2RAD * 110, DEG2RAD * 30}
-  // For newly assembled ones
   HOME{DEG2RAD * 90, DEG2RAD * 130, DEG2RAD * 150, DEG2RAD * 60}
 {
     using namespace std::chrono_literals;

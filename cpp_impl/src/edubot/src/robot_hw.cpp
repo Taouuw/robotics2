@@ -2,8 +2,6 @@
 
 RobotHW::RobotHW(std::string ser, int baud, int speed, int gripper_speed):
                 Robot(4),
-                // HOME({DEG2RAD * 45, DEG2RAD * 110, DEG2RAD * 180, DEG2RAD * 30}),
-                // For newly assembled ones
                 HOME({DEG2RAD * 90, DEG2RAD * 130, DEG2RAD * 150, DEG2RAD * 60}),
                 SPEED(speed),
                 GRIPPER_SPEED(gripper_speed),
@@ -135,8 +133,6 @@ void RobotHW::set_des_gripper(GripperState state)
  */
 void RobotHW::set_des_gripper(float o)
 {
-    // int opened = 900;
-    // int closed = 2500;
     int opened = 2200;
     int closed = 500;
 
