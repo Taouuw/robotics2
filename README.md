@@ -8,14 +8,37 @@ This repository contains the drivers, visualization features and a simple simula
 
 To compile the pre-requisites are `ros2` and `boost`.
 ROS2 humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
+The easiest way is to add the sources and install via apt
+
+        # Add the ROS 2 GPG key with apt.
+        sudo apt update && sudo apt install curl -y
+        sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg 
+
+        # Add the repository to your sources list.
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+        # Update the sources
+        sudo apt update && sudo apt upgrade
+
+        # Finally install ros
+        sudo apt install ros-humble-desktop
+
+Make sure the additional ros libraries are installed
+
+        sudo apt install ros-humble-xacro ros-humble-joint-state-publisher
+
 The required `boost` libraries are installed via
 
         sudo apt install libboost-all-dev
 
-### Compilaton
+Finally, clone this repository recursively
+
+        git clone --recurse-submodules https://github.com/bioMorphic-Intelligence-Lab/edubot
+
+### Compilation
 
 The repository contains two folders: `cpp_impl` and `python_impl`. The former contains the driver, visualization, simulation and a simple control example of the robot while the latter only contains the control example. 
-You can choose which language you would like to write you controller in using the code provided as an initial guideline.
+You can choose which language you would like to write your controller in using the code provided as an initial guideline.
 To compile each of the packages navigate into the folder, source your `ros` installation and call the `colcon` compilation, e.g.
 
         cd cpp_impl
