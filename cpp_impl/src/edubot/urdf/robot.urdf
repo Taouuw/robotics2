@@ -3,7 +3,7 @@
 
   <!-- ****************** MATH CONSTANTS *******************************  -->
   <xacro:property name="PI_2" value="1.57079632679"/>
-    <xacro:property name="PI" value="3.141592654"/>
+  <xacro:property name="PI" value="3.141592654"/>
   <!-- ****************** ROBOT CONSTANTS *******************************  -->
   <!-- Define the size of the robot's main chassis in meters -->
   <xacro:property name="base_radius" value="0.05"/>
