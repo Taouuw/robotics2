@@ -3,6 +3,7 @@
 
   <!-- ****************** MATH CONSTANTS *******************************  -->
   <xacro:property name="PI_2" value="1.57079632679"/>
+  <xacro:property name="PI" value="3.141592654"/>
   <!-- ****************** ROBOT CONSTANTS *******************************  -->
   <!-- Define the size of the robot's main chassis in meters -->
   <xacro:property name="base_radius" value="0.05"/>
@@ -157,7 +158,7 @@
     <child link="link2"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_1_length}" rpy="0 0 0"/>
+    <origin xyz="0 0 ${link_1_length}" rpy="0 ${-PI_2} 0"/>
   </joint>
 
   <joint name="link3_joint" type="revolute">
@@ -165,7 +166,7 @@
     <child link="link3"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_2_length}" rpy="0 0 0"/>
+    <origin xyz="0 0 ${link_2_length}" rpy="0 ${PI_2} 0"/>
   </joint>
 
   <joint name="link4_joint" type="revolute">
@@ -173,7 +174,7 @@
     <child link="link4"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_3_length}" rpy="0 0 0"/>
+    <origin xyz="0 0 ${link_3_length}" rpy="0 ${-PI_2} 0"/>
   </joint>
 
   <joint name="ee_joint" type="fixed">
