@@ -10,8 +10,8 @@ class ExampleTraj(Node):
     def __init__(self):
         super().__init__('minimal_publisher')
 
-        self._HOME = [np.deg2rad(45), np.deg2rad(-50),
-                     np.deg2rad(110), np.deg2rad(30)]
+        self._HOME = [np.deg2rad(0), np.deg2rad(40),
+                     np.deg2rad(30), np.deg2rad(-30)]
         self._beginning = self.get_clock().now()
         self._publisher = self.create_publisher(JointTrajectory, 'joint_cmds', 10)
         timer_period = 0.04  # seconds

@@ -158,7 +158,7 @@
     <child link="link2"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_1_length}" rpy="0 ${-PI_2} 0"/>
+    <origin xyz="0 0 ${link_1_length}" rpy="0 0 0"/>
   </joint>
 
   <joint name="link3_joint" type="revolute">
@@ -166,7 +166,7 @@
     <child link="link3"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_2_length}" rpy="0 ${PI_2} 0"/>
+    <origin xyz="0 0 ${link_2_length}" rpy="0 ${PI_2} ${PI}"/>
   </joint>
 
   <joint name="link4_joint" type="revolute">
@@ -174,7 +174,7 @@
     <child link="link4"/>
     <axis xyz="0 1 0"/>
     <limit lower="${-PI_2}" upper="${PI_2}" effort="10" velocity="10"/>
-    <origin xyz="0 0 ${link_3_length}" rpy="0 ${-PI_2} 0"/>
+    <origin xyz="0 0 ${link_3_length}" rpy="0 0 ${-PI}"/>
   </joint>
 
   <joint name="ee_joint" type="fixed">

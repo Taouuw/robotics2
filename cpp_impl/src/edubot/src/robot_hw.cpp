@@ -2,7 +2,7 @@
 
 RobotHW::RobotHW(std::string ser, int baud, int speed, int gripper_speed):
                 Robot(4),
-                HOME({DEG2RAD * 90, DEG2RAD * 130, DEG2RAD * 150, DEG2RAD * 60}),
+                HOME({DEG2RAD * 0, DEG2RAD * 40, DEG2RAD * 30, DEG2RAD * -30}),
                 SPEED(speed),
                 GRIPPER_SPEED(gripper_speed),
                 MIN({500, 500, 500, 500}),
@@ -101,7 +101,7 @@ void RobotHW::homing()
         this->q.at(i) = this->HOME.at(i);
     }
     cmd += "\r";
-
+    
     this->write_cmd(cmd);
 }
 
@@ -170,9 +170,10 @@ void RobotHW::set_des_gripper(float o)
 *            
 *  @returns number of ticks equivalent to the rad angle
 */
-float RobotHW::RAD_2_TICKS(uint servo, float rad)
+int RobotHW::RAD_2_TICKS(uint servo, float rad)
 {
-    return (this->MAX.at(servo) - this->MIN.at(servo)) / this->RANGE.at(servo) * rad  + this->MIN[servo];
+    return (this->MAX.at(servo) - this->MIN.at(servo)) * (rad / this->RANGE.at(servo)  + 0.5) 
+                    + this->MIN.at(servo);
 }
 
 /* Find the correctly formatted string based on a command

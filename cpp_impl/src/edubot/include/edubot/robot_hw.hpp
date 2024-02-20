@@ -36,6 +36,6 @@ private:
 
     void write_cmd(std::string cmd);
     std::string format_cmd(uint servo, int pos, int vel);
-    float RAD_2_TICKS(uint servo, float rad);
+    int RAD_2_TICKS(uint servo, float rad);
 
 };
