@@ -21,8 +21,8 @@ The easiest way is to add the sources and install via apt
         # Update the sources
         sudo apt update && sudo apt upgrade
 
-        # Finally install ros
-        sudo apt install ros-humble-desktop
+        # Finally install ros and ros-dev tools
+        sudo apt install ros-humble-desktop ros-dev-tools
 
 Make sure the additional ros libraries are installed
 
