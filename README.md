@@ -6,8 +6,10 @@ This repository contains the drivers, visualization features and a simple simula
 
 ### Pre-requisites
 
-To compile the pre-requisites are `ros2` and `boost`.
-ROS2 humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
+To compile the pre-requisites are `ROS 2` and `boost`.
+
+#### For Ubuntu 22.04 users: Install ROS 2 Humble:
+ROS 2 Humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS 2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
 Additional prerequisites are found [here](#for-virtual-machine-users) if you're using a Virtual Machine.
 The easiest way is to add the sources and install via apt
 
@@ -27,6 +29,37 @@ The easiest way is to add the sources and install via apt
 Make sure the additional ros libraries are installed
 
         sudo apt install ros-humble-xacro ros-humble-joint-state-publisher ros-humble-joint-state-publisher-gui
+        # Install pip if not yet installed
+        sudo apt-get install python3-pip
+        # Install python pkg dependency
+        pip install catkin_pkg
+
+### For Ubuntu 24.04 users Install ROS 2 Jazzy:
+ROS 2 Jazzy (LTS) can be installed for ubuntu (>= 24.04) as explained in the [ROS 2 documentation](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html). 
+Additional prerequisites are found [here](#for-virtual-machine-users) if you're using a Virtual Machine.
+The easiest way is to add the sources and install via apt
+
+        # Add the ROS 2 GPG key with apt.
+        sudo apt update && sudo apt install curl -y
+        zsudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+        # Add the repository to your sources list.
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+        # Update the sources
+        sudo apt update
+
+        # Finally install ros and ros-dev tools
+        sudo apt install ros-dev-tools ros-jazzy-desktop
+
+Make sure the additional ros libraries are installed
+
+        sudo apt install ros-jazzy-xacro ros-jazzy-joint-state-publisher ros-jazzy-joint-state-publisher-gui
+        # Install pip if not yet installed
+        sudo apt-get install python3-pip
+        # Install python pkg dependency
+        pip install catkin_pkg
+
 
 The required `boost` libraries are installed via
 
@@ -36,6 +69,10 @@ Finally, clone this repository recursively
 
         git clone --recurse-submodules https://github.com/bioMorphic-Intelligence-Lab/edubot
 
+To allow the `ROS` programm to access the USB port connected to the eduBot you will also have to add the current user to the dialout group
+
+        sudo usermod -a -G dialout $USER
+
 ### Compilation
 
 The repository contains two folders: `cpp_impl` and `python_impl`. The former contains the driver, visualization, simulation and a simple control example of the robot while the latter only contains the control example. 
@@ -43,7 +80,10 @@ You can choose which language you would like to write your controller in using t
 To compile each of the packages navigate into the folder, source your `ros` installation and call the `colcon` compilation, e.g.
 
         cd cpp_impl
+        # For ROS 2 Humble users
         source /opt/ros/humble/setup.bash
+        # For ROS 2 Jazzy users
+        source /opt/ros/jazzy/setup.bash
         colcon build
 
 ### Running
