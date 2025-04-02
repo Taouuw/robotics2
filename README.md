@@ -2,10 +2,14 @@
 
 All setup should be pretty identical to specified for the usual edubot installation guide, except instead of installing edubot you clone from this repository. This is done as follows:
 
+using HTTPS:
 ```
 git clone --recurse-submodules https://github.com/Taouuw/robotics2.git
 ```
-
+using SSH:
+```
+git clone --recurse-submodules git@github.com:Taouuw/robotics2.git
+```
 
 
 I added an `instant_setup.sh` file which can be sourced to do all steps at the same time:
