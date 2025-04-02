@@ -25,7 +25,7 @@ source instant_setup.sh     
 
 
 
-In another terminal you can then run the python implementation version.
+In another terminal you can then run the python implementation version. The python implementation contains all custom trajectories which can be run.
 
 All custom implementation are done in python.
 
