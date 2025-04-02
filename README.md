@@ -1,6 +1,10 @@
 # Implementation for EduBot for AE4324 Physical Interaction for Aerial and Space Robots (2024/25 Q3)
 
-All setup should be identical to specified below, except instead of installing edubot you clone from this repository.
+All setup should be pretty identical to specified for the usual edubot installation guide, except instead of installing edubot you clone from this repository. This is done as follows:
+
+```
+git clone --recurse-submodules https://github.com/Taouuw/robotics2.git
+```
 
 
 

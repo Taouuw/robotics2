@@ -14,7 +14,7 @@ class ExampleTraj(Node):
                      np.deg2rad(30), np.deg2rad(-30)]
         self._beginning = self.get_clock().now()
         self._publisher = self.create_publisher(JointTrajectory, 'joint_cmds', 10)
-        timer_period = 0.04  # seconds
+        timer_period = 0.1  # seconds
         self._timer = self.create_timer(timer_period, self.timer_callback)
 
     def timer_callback(self):
@@ -25,12 +25,21 @@ class ExampleTraj(Node):
         dt = (now - self._beginning).nanoseconds * (1e-9)
         
         point = JointTrajectoryPoint()
+        """
         point.positions = [self._HOME[0] + 0.1 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
                            self._HOME[1] + 0.1 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
                            self._HOME[2] + 0.25 * np.pi * (np.sin(2 * np.pi / 10.0 * dt) - 1),
                            self._HOME[3] + 0.25 * np.pi * np.sin(2 * np.pi / 10.0 * dt),
                            0.5 * np.sin(2 * np.pi / 10.0 * dt) + 0.5
                            ]
+        """
+        point.positions = [0.0,
+                           -np.pi/2,
+                           -np.pi/2,
+                           0.0,
+                           0.5 * np.sin(2 * np.pi / 10.0 * dt) + 0.5
+                           ]
+
         msg.points = [point]
 
         self._publisher.publish(msg)

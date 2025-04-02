@@ -20,6 +20,8 @@ class SchedulePoint(NamedTuple):
     time : float
 
 class Schedule():
+    """time paramatrized route of EE position targets.
+    can be made periodic"""
     def __init__(self, waypoints : list[Point], ees: list [float], times : list[float], is_periodic=False):
         self.waypoints = waypoints
         self.is_periodic = is_periodic
@@ -220,8 +222,10 @@ class Schedule():
         return sum([self for i in range(n)])
     
 class RobotController(Node):
+    """Node which takes a robot representation and a schedule"""
 
     def __init__(self, robot : Robot,  schedule : Schedule, timer_period = 0.1, mode = 0):
+        
         super().__init__('minimal_publisher')
 
         self.schedule = schedule

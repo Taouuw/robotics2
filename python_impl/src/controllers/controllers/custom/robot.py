@@ -316,7 +316,7 @@ class Robot:
         l_lower = self._cosine_rule_a_length(math.pi - self.domains[3].lower, self.lengths[2], self.lengths[3])
         return max(l_lower, l_upper)
 
-    def inverses(self, point : Point) -> RobotAngles:
+    def inverses(self, point : Point) -> list[RobotAngles]:
         point_from_center = point - self.position
         heading = math.atan2(point_from_center.y, point_from_center.x)        
         shoulder_from_center = Point(math.cos(heading) * self.lengths[0], math.sin(heading) * self.lengths[0], 0)
@@ -346,7 +346,6 @@ class Robot:
 
         return sorted_angless
     
-   
     def inverses_unfiltered(self, point : Point) -> RobotAngles:
         point_from_center = point - self.position
         heading = math.atan2(point_from_center.y, point_from_center.x)        
