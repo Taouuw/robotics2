@@ -6,6 +6,10 @@ setup(
     name=package_name,
     version='0.0.0',
     packages=find_packages(exclude=['test']),
+    package_data={
+        # Include all `.npy` files in the "data" subdirectory
+        "controllers": ["data/*.npy"],
+    },
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -20,7 +24,15 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'example_traj = controllers.example_traj:main'
+            'example_traj = controllers.example_traj:main',
+            'draw_traj = controllers.custom_traj:draw_traj',
+            'jacobian_traj = controllers.custom_traj:jacobian_traj',
+            'grab_ab_traj = controllers.custom_traj:grab_ab_traj',
+            'grab_ba_traj = controllers.custom_traj:grab_ba_traj',
+            'berry_traj = controllers.custom_traj:berry_traj',
+            'wipe_traj = controllers.custom_traj:wipe_traj',
+            'demo_traj = controllers.custom_traj:demo_traj',
+            'empty_traj = controllers.custom_traj:empty_traj',
         ],
     },
 )

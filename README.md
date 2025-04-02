@@ -1,14 +1,106 @@
+# Implementation for EduBot for AE4324 Physical Interaction for Aerial and Space Robots (2024/25 Q3)
+
+All setup should be identical to specified below, except instead of installing edubot you clone from this repository.
+
+
+
+I added an `instant_setup.sh` file which can be sourced to do all steps at the same time:
+
+```
+source instant_setup.sh     
+# runs source /opt/ros/humble/setup.bash
+# if you are using jazzy change this within the file
+# runs source cpp_impl/install/setup.bash
+# you should then be presented with several options for which you can select a number:
+# you can either start in rviz sim, or start hw drivers
+```
+
+
+
+In another terminal you can then run the python implementation version.
+
+All custom implementation are done in python.
+
+```
+source instant_setup.sh -p     # python implementation instead of cpp
+# sources
+# runs source python_impl/install/setup.bash
+# you should then be presented with several options for which you can select a preferred number:
+# you can run all custom made trajectories for the exercises here
+```
+
+
+
+Custom python implementations are generally located in `python_impl/src/controllers/controllers/custom/`
+
+As for the files here:
+
+`robot.py` contains basic implementations for robot IK calculations, including the classes `Point` for a point in 3D and `Robot` for a representation of the robotic arm, which stores the lengths of the links angle limits,
+
+There is a `Robot.inverses(point : Point) -> list[RobotAngles]` method which does inverse kinematics on a point and returns a list of possible robot joint space configurations that solve for it. These joint space configurations are ordered in ascending order based on which configuration has the largest margin to the angle limits.
+
+
+
+`robot_controller.py` builds upon the basic structures defined in `robot.py`
+
+It defines a `RobotController(Node)` class which is built in a similar way and has similar functionality to `ExampleTraj(Node)` provided.
+
+
+
+`RobotController(Node)` offers a higher level interface for control. You create one by providing it a `Robot` instance for representing the robot its controlling and a `Schedule` class instance which uses waypoints to rerpresent a time parametrized function of EE target positions.
+
+You can set its `mode` to switch between "jacobian velocity control" or standard control.
+
+0.  means standard control (default)
+
+1.  is direct jacobian velocity control: Reads the desired velocity from the schedule directly and thus accumulates error. Is unstable 
+
+2.  reads desired velocity from difference between current position and target position, and thus is stable.
+
+
+
+`DemoController(Node)` is a lower level interface for control. Also like `ExampleTraj(Node)`
+
+
+
+
+
+
+
+New entry points for the new custom trajectories are added in:
+
+`python_impl/src/controllers/controllers/custom_traj.py`
+
+
+
+Additionally, waypoint data for the flame trajectory is stored in: `python_impl/src/controllers/controllers/data`
+
+
+
+And changes were made to `python_impl/src/controllers/setup.py`to include the new trajectories as entry points
+
+
+
+
+
+
+
+
+
+
+
 # EduBot: The 4-DoF manipulator for Education
 
 This repository contains the drivers, visualization features and a simple simulation for the [Lynxmotion AL5A Arm](https://wiki.lynxmotion.com/info/wiki/lynxmotion/view/servo-erector-set-robots-kits/ses-v1-robots/ses-v1-arms/al5a/), all of which are implemented using the [ROS2](https://docs.ros.org/en/humble/index.html) middleware.
 
-## Installation 
+## Installation
 
 ### Pre-requisites
 
 To compile the pre-requisites are `ROS 2` and `boost`.
 
 #### For Ubuntu 22.04 users: Install ROS 2 Humble:
+
 ROS 2 Humble (LTS) can be installed for ubuntu (>= 22.04) as explained in the [ROS 2 documentation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html). 
 Additional prerequisites are found [here](#for-virtual-machine-users) if you're using a Virtual Machine.
 The easiest way is to add the sources and install via apt
@@ -16,13 +108,13 @@ The easiest way is to add the sources and install via apt
         # Add the ROS 2 GPG key with apt.
         sudo apt update && sudo apt install curl -y
         sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg 
-
+    
         # Add the repository to your sources list.
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-
+    
         # Update the sources
         sudo apt update && sudo apt upgrade
-
+    
         # Finally install ros and ros-dev tools
         sudo apt install ros-humble-desktop ros-dev-tools
 
@@ -35,6 +127,7 @@ Make sure the additional ros libraries are installed
         pip install catkin_pkg
 
 ### For Ubuntu 24.04 users Install ROS 2 Jazzy:
+
 ROS 2 Jazzy (LTS) can be installed for ubuntu (>= 24.04) as explained in the [ROS 2 documentation](https://docs.ros.org/en/jazzy/Installation/Ubuntu-Install-Debs.html). 
 Additional prerequisites are found [here](#for-virtual-machine-users) if you're using a Virtual Machine.
 The easiest way is to add the sources and install via apt
@@ -42,13 +135,13 @@ The easiest way is to add the sources and install via apt
         # Add the ROS 2 GPG key with apt.
         sudo apt update && sudo apt install curl -y
         zsudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
-
+    
         # Add the repository to your sources list.
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
-
+    
         # Update the sources
         sudo apt update
-
+    
         # Finally install ros and ros-dev tools
         sudo apt install ros-dev-tools ros-jazzy-desktop
 
@@ -59,7 +152,6 @@ Make sure the additional ros libraries are installed
         sudo apt-get install python3-pip
         # Install python pkg dependency
         pip install catkin_pkg
-
 
 The required `boost` libraries are installed via
 
@@ -94,12 +186,12 @@ Once the package is compiled and sourced via
 
 You can run start the simulation or the driver for the robot with the following commands
 
- Command                            |  Effect 
-------------------------------------|---------------------------------------------------
-`ros2 launch edubot sim.launch.py`  |  Launches the simulation and `rviz` visualization
-`ros2 launch edubot rviz.launch.py` |  Launches the `rviz` visualization and a joint position interface which lets you play with the robot
-`ros2 run edubot robot_hw`          |  Starts the Hardware driver for the robot
-`ros2 run controllers example_traj` |  Starts the an controller that commands a periodic example trajectory
+| Command                             | Effect                                                                                              |
+| ----------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `ros2 launch edubot sim.launch.py`  | Launches the simulation and `rviz` visualization                                                    |
+| `ros2 launch edubot rviz.launch.py` | Launches the `rviz` visualization and a joint position interface which lets you play with the robot |
+| `ros2 run edubot robot_hw`          | Starts the Hardware driver for the robot                                                            |
+| `ros2 run controllers example_traj` | Starts the an controller that commands a periodic example trajectory                                |
 
 ### For Virtual Machine Users
 
@@ -128,7 +220,5 @@ Example implementation can be found [here](https://www.youtube.com/watch?v=h-EOH
 If any issues with this software occur, please don't hesitate to use the [Issues](https://github.com/BioMorphic-Intelligence-Lab/edubot/issues) pane within this repository.
 
 Good Luck!
-
-
 
 
