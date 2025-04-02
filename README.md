@@ -75,7 +75,7 @@ You can set its `mode` to switch between "jacobian velocity control" or standard
 
 
 
-New entry points for the new custom trajectories are added in:
+New entry points for the new custom trajectories are added in. This also serves as example usage of the implementations in `robot.py` and `robot_controller.py`:
 
 `python_impl/src/controllers/controllers/custom_traj.py`
 
@@ -83,17 +83,12 @@ New entry points for the new custom trajectories are added in:
 
 Additionally, waypoint data for the flame trajectory is stored in: `python_impl/src/controllers/controllers/data`
 
-
-
 And changes were made to `python_impl/src/controllers/setup.py`to include the new trajectories as entry points
 
 
+There is a `deliverables/` directory containing video recordings of the robot motion and the report PDF.
 
-
-
-
-
-
+From here on follows the original old README for EduBot setup:
 
 
 
